@@ -36,8 +36,19 @@ body {
   font: 400 15px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 .wrap { max-width: 640px; margin: 0 auto; padding: 48px 20px 64px; }
+.head-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
 h1 { font-size: 22px; margin: 0 0 6px; letter-spacing: -0.01em; }
 .sub { color: var(--text-muted); font-size: 14px; margin-bottom: 32px; }
+.btn-icon {
+  appearance: none; background: var(--surface-1); color: var(--text-1);
+  border: 1px solid var(--border-2); border-radius: 9px;
+  padding: 7px 10px; font-size: 14px; line-height: 1; cursor: pointer;
+  transition: background .12s ease, border-color .12s ease;
+  flex-shrink: 0;
+}
+.btn-icon:hover { background: var(--ghost); }
+.btn-icon:active { transform: translateY(0.5px); }
+.btn-icon:focus-visible { outline: 2px solid var(--s1); outline-offset: 1px; }
 .proj {
   display: block; background: var(--surface-1); border: 1px solid var(--border);
   border-radius: 12px; padding: 16px 18px; margin-bottom: 12px;
@@ -51,7 +62,10 @@ footer { margin-top: 32px; font-size: 12.5px; color: var(--text-muted); }
 </head>
 <body>
 <div class="wrap">
-  <h1>Projects</h1>
+  <div class="head-row">
+    <h1>Projects</h1>
+    <button class="btn-icon" id="theme-toggle" title="Toggle light/dark theme" aria-label="Toggle theme">◐</button>
+  </div>
   <div class="sub">Small, self-contained web tools — no backend, no build step.</div>
 
   <a class="proj" href="https://kranmal.github.io/Vibe_Portfolio_Projects/cot-dashboard/">
@@ -76,5 +90,18 @@ footer { margin-top: 32px; font-size: 12.5px; color: var(--text-muted); }
 
   <footer>kranmal.github.io · <a href="privacy.html" style="color:inherit;">Privacy Policy</a></footer>
 </div>
+<script>
+(function initTheme() {
+  var saved = localStorage.getItem("kranmal-theme");
+  if (saved) document.documentElement.setAttribute("data-theme", saved);
+  document.getElementById("theme-toggle").addEventListener("click", function () {
+    var explicit = document.documentElement.getAttribute("data-theme");
+    var effectiveDark = explicit ? explicit === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    var next = effectiveDark ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("kranmal-theme", next);
+  });
+})();
+</script>
 </body>
 </html>
