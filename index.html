@@ -110,7 +110,11 @@ a { color: inherit; }
 :where(a, button):focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 /* ---------- hero ---------- */
-.hero { padding: 58px 0 46px; }
+.hero {
+  padding: 58px 0 46px;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center; column-gap: 24px;
+}
 .kicker {
   display: inline-flex; align-items: center; gap: 9px; margin: 0 0 20px;
   font-size: 11.5px; letter-spacing: 0.11em; text-transform: uppercase; color: var(--text-3);
@@ -143,6 +147,51 @@ h1 {
 .eq i:nth-child(3) { animation-duration: 880ms; animation-delay: -540ms; }
 .eq i:nth-child(4) { animation-duration: 1320ms; animation-delay: -160ms; }
 @keyframes pulse { from { transform: scaleY(0.22); } to { transform: scaleY(1); } }
+
+/* ---------- the mascot ---------- */
+.hero-copy { min-width: 0; }
+.mon {
+  width: clamp(126px, 19vw, 168px); height: auto;
+  justify-self: end; overflow: visible;
+}
+/* only the animated parts get fill-box, so the static presentation
+   transforms below keep resolving in plain user space */
+.mon-bob, .mon-crest rect, .mon-eyes, .mon-tail, .mon-note { transform-box: fill-box; }
+
+/* it breathes */
+.mon-bob { transform-origin: 50% 100%; animation: monBob 2.6s cubic-bezier(.45,0,.55,1) infinite alternate; }
+@keyframes monBob {
+  from { transform: translateY(3px) scale(1.014, 0.986); }
+  to   { transform: translateY(-6px) scale(0.99, 1.01); }
+}
+
+/* its crest is the same equaliser that marks every track */
+.mon-crest rect {
+  transform-origin: 50% 100%; transform: scaleY(var(--h, .6));
+  animation: monEq var(--t, 1s) ease-in-out infinite alternate;
+  animation-delay: var(--d, 0ms);
+}
+@keyframes monEq { from { transform: scaleY(0.26); } to { transform: scaleY(1); } }
+
+.mon-eyes { transform-origin: 50% 50%; animation: monBlink 5.4s ease-in-out infinite; }
+@keyframes monBlink { 0%, 91%, 100% { transform: scaleY(1); } 94%, 96% { transform: scaleY(0.08); } }
+
+.mon-tail { transform-origin: 0% 100%; animation: monTail 2.3s ease-in-out infinite alternate; }
+@keyframes monTail { from { transform: rotate(-7deg); } to { transform: rotate(8deg); } }
+
+.mon-note { opacity: 0; transform-origin: 50% 50%; animation: monNote 3.6s ease-out infinite; animation-delay: var(--d, 0ms); }
+@keyframes monNote {
+  0%   { opacity: 0; transform: translate(0, 4px) scale(0.6) rotate(-10deg); }
+  18%  { opacity: 0.92; }
+  72%  { opacity: 0.5; }
+  100% { opacity: 0; transform: translate(var(--dx, 8px), -32px) scale(1.04) rotate(14deg); }
+}
+
+/* it perks up when you come near */
+.mon-cheek { transition: opacity .25s ease; }
+.mon:hover .mon-bob { animation-duration: .9s; }
+.mon:hover .mon-crest rect { animation-duration: .42s; }
+.mon:hover .mon-cheek { opacity: .95; }
 
 /* ---------- section markers ---------- */
 .side { margin-top: 40px; }
@@ -267,6 +316,10 @@ footer a:hover { color: var(--accent); border-color: var(--accent-edge); }
   .feature--lead h3 { font-size: 24px; }
   .hero { padding: 44px 0 38px; }
 }
+@media (max-width: 640px) {
+  .hero { grid-template-columns: 1fr; row-gap: 12px; }
+  .mon { justify-self: start; order: -1; width: 118px; }
+}
 @media (max-width: 560px) {
   .track {
     grid-template-columns: 2.1rem minmax(0, 1fr) 16px;
@@ -290,6 +343,8 @@ footer a:hover { color: var(--accent); border-color: var(--accent-edge); }
   .eq i { transform: scaleY(0.62); }
   .track-idx .eq { opacity: 0 !important; }
   .track:hover .track-idx::before { opacity: 1 !important; }
+  .mon-crest rect { transform: scaleY(var(--h, .6)); }
+  .mon-note { opacity: 0 !important; }
 }
 </style>
 </head>
@@ -304,9 +359,83 @@ footer a:hover { color: var(--accent); border-color: var(--accent-edge); }
   </header>
 
   <section class="hero">
-    <p class="kicker mono"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span> now playing · <span id="count">11</span> side projects</p>
-    <h1>Small things, built on <em class="vibe">vibes</em>.</h1>
-    <p class="lede">Self-contained web tools — no backend, no build step, nothing to install. Open one and it just runs.</p>
+    <div class="hero-copy">
+      <p class="kicker mono"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span> now playing · <span id="count">11</span> side projects</p>
+      <h1>Small things, built on <em class="vibe">vibes</em>.</h1>
+      <p class="lede">Self-contained web tools — no backend, no build step, nothing to install. Open one and it just runs.</p>
+    </div>
+
+    <svg class="mon" viewBox="0 0 170 178" fill="none" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="monBody" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#ffc74f"/>
+          <stop offset=".52" stop-color="#f89239"/>
+          <stop offset="1" stop-color="#ee6437"/>
+        </linearGradient>
+        <linearGradient id="monBelly" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#fff6e2"/>
+          <stop offset="1" stop-color="#ffdfae"/>
+        </linearGradient>
+        <linearGradient id="monTail" x1="0" y1="1" x2=".85" y2="0">
+          <stop offset="0" stop-color="#f26a3d"/>
+          <stop offset="1" stop-color="#d93b83"/>
+        </linearGradient>
+      </defs>
+
+      <!-- what it is humming, drifting off -->
+      <g transform="translate(133 86)"><g class="mon-note" style="--d:0ms;--dx:10px">
+        <ellipse cx="-1" cy="6" rx="4.3" ry="3.3" fill="#d93b83" transform="rotate(-20 -1 6)"/>
+        <path d="M3 5.4V-7" stroke="#d93b83" stroke-width="2" stroke-linecap="round"/>
+        <path d="M3 -7c4.2 1.4 5.6 4 5 7.4" stroke="#d93b83" stroke-width="2" stroke-linecap="round"/>
+      </g></g>
+      <g transform="translate(151 101)"><g class="mon-note" style="--d:-1200ms;--dx:13px">
+        <ellipse cx="-1" cy="5" rx="3.6" ry="2.8" fill="#ef5f63" transform="rotate(-20 -1 5)"/>
+        <path d="M2.4 4.5V-6" stroke="#ef5f63" stroke-width="1.8" stroke-linecap="round"/>
+      </g></g>
+      <g transform="translate(141 66)"><g class="mon-note" style="--d:-2400ms;--dx:-7px">
+        <ellipse cx="-1" cy="5" rx="3.6" ry="2.8" fill="#f7913a" transform="rotate(-20 -1 5)"/>
+        <path d="M2.4 4.5V-6" stroke="#f7913a" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M2.4 -6c3.6 1.2 4.8 3.4 4.3 6.3" stroke="#f7913a" stroke-width="1.8" stroke-linecap="round"/>
+      </g></g>
+
+      <g class="mon-bob">
+        <!-- crest: the equaliser again, wearing it as a haircut -->
+        <g class="mon-crest">
+          <rect x="61" y="28" width="7" height="44" rx="3.5" fill="#ffc247" style="--h:.46;--t:780ms;--d:0ms"/>
+          <rect x="71" y="28" width="7" height="44" rx="3.5" fill="#f7913a" style="--h:.8;--t:1180ms;--d:-320ms"/>
+          <rect x="81" y="28" width="7" height="44" rx="3.5" fill="#ef5f63" style="--h:.58;--t:900ms;--d:-540ms"/>
+          <rect x="91" y="28" width="7" height="44" rx="3.5" fill="#d93b83" style="--h:1;--t:1320ms;--d:-160ms"/>
+          <rect x="101" y="28" width="7" height="44" rx="3.5" fill="#f7913a" style="--h:.5;--t:1000ms;--d:-700ms"/>
+        </g>
+
+        <!-- fins, feet and tail sit behind the body so the joins never show -->
+        <path d="M39 99c-14-11-24-4-21 7 3 10 15 8 21 1z" fill="#ee6437"/>
+        <path d="M131 99c14-11 24-4 21 7-3 10-15 8-21 1z" fill="#ee6437"/>
+        <ellipse cx="66" cy="157" rx="12" ry="7" fill="#e85c33"/>
+        <ellipse cx="104" cy="157" rx="12" ry="7" fill="#e85c33"/>
+        <g class="mon-tail">
+          <path d="M116 150c22 10 46 2 47-17 0-11-11-15-15-7 7 5 4 14-7 16-8 1-18 3-25 8z" fill="url(#monTail)"/>
+        </g>
+
+        <!-- body -->
+        <path d="M85 64c28 0 49 20 49 47 0 28-22 45-49 45s-49-17-49-45c0-27 21-47 49-47z" fill="url(#monBody)"/>
+        <ellipse cx="85" cy="137" rx="26" ry="15" fill="url(#monBelly)"/>
+        <ellipse cx="63" cy="85" rx="13" ry="7.5" fill="#ffffff" opacity=".3" transform="rotate(-24 63 85)"/>
+
+        <!-- face -->
+        <ellipse class="mon-cheek" cx="50" cy="119" rx="8" ry="5.4" fill="#ff5f8a" opacity=".72"/>
+        <ellipse class="mon-cheek" cx="120" cy="119" rx="8" ry="5.4" fill="#ff5f8a" opacity=".72"/>
+        <g class="mon-eyes">
+          <ellipse cx="68" cy="104" rx="8.4" ry="10" fill="#3a1c10"/>
+          <ellipse cx="102" cy="104" rx="8.4" ry="10" fill="#3a1c10"/>
+          <circle cx="65" cy="100" r="3.1" fill="#ffffff"/>
+          <circle cx="99" cy="100" r="3.1" fill="#ffffff"/>
+          <circle cx="71.5" cy="108.5" r="1.7" fill="#ffffff" opacity=".65"/>
+          <circle cx="105.5" cy="108.5" r="1.7" fill="#ffffff" opacity=".65"/>
+        </g>
+        <path d="M77 117c4 5.4 12 5.4 16 0" stroke="#3a1c10" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+    </svg>
   </section>
 
   <section class="side" aria-labelledby="a-side">
