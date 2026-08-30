@@ -2,77 +2,104 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kranmal.github.io/</loc>
+    <lastmod>2026-08-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://kranmal.github.io/Vibe_Portfolio_Projects/dunder-mifflin-dash/</loc>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://kranmal.github.io/Vibe_Portfolio_Projects/cot-dashboard/</loc>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://kranmal.github.io/Vibe_Portfolio_Projects/crypto-portfolio/</loc>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://kranmal.github.io/Vibe_Portfolio_Projects/weather-app/</loc>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://kranmal.github.io/Vibe_Portfolio_Projects/bollocks-generator/</loc>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://kranmal.github.io/Vibe_Portfolio_Projects/parapet/</loc>
+    <lastmod>2026-08-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://kranmal.github.io/Vibe_Portfolio_Projects/e2e-dashboard/</loc>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://kranmal.github.io/Vibe_Portfolio_Projects/prompt-grader/</loc>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://kranmal.github.io/Vibe_Portfolio_Projects/lorem-ipsum-generator/</loc>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://kranmal.github.io/Vibe_Portfolio_Projects/emoji-picker/</loc>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://kranmal.github.io/Vibe_Portfolio_Projects/llm-cost-calculator/</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://kranmal.github.io/Vibe_Portfolio_Projects/metal-prices-uk/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://kranmal.github.io/lendly/</loc>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://kranmal.github.io/aurora-drift/</loc>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://kranmal.github.io/Vibe_Portfolio_Projects/llm-cost-calculator/</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://kranmal.github.io/market-pulse/</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://kranmal.github.io/market-pulse/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
+    <loc>https://kranmal.github.io/privacy.html</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>
