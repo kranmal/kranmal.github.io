@@ -7,8 +7,8 @@
 <meta name="description" content="Small self-contained web projects — a COT positioning dashboard, a crypto portfolio tracker, a flick-screen platformer, and more. No backend, no build step.">
 <link rel="canonical" href="https://kranmal.github.io/">
 <meta name="google-site-verification" content="d7mI30c7mJv_UgitNHbB5VMrj8TEely5nG0NIGx3f_I" />
-<meta name="theme-color" content="#faf6f0" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#100e0c" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#efe8dc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b0910" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://kranmal.github.io/">
 <meta property="og:title" content="Ketan Ranmal — Projects">
@@ -21,10 +21,10 @@
 <meta name="twitter:title" content="Ketan Ranmal — Projects">
 <meta name="twitter:description" content="Small self-contained web projects — no backend, no build step. Open one and it just runs.">
 <meta name="twitter:image" content="https://kranmal.github.io/og-image.png">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23100e0c'/%3E%3Cg fill='%23ffa23c'%3E%3Crect x='7' y='13' width='3.4' height='6' rx='1.7'/%3E%3Crect x='13' y='8' width='3.4' height='16' rx='1.7'/%3E%3Crect x='19' y='11' width='3.4' height='10' rx='1.7'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='3' fill='%23100c14'/%3E%3Crect x='6' y='13' width='4' height='7' fill='%23c6f000'/%3E%3Crect x='12' y='7' width='4' height='19' fill='%2312e0e8'/%3E%3Crect x='18' y='10' width='4' height='13' fill='%23ff2e88'/%3E%3Crect x='24' y='15' width='3' height='5' fill='%23ff6a00'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Bungee&family=Permanent+Marker&display=swap" rel="stylesheet">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6981194323350325"
      crossorigin="anonymous"></script>
 <script data-goatcounter="https://kranmal.goatcounter.com/count"
@@ -64,316 +64,407 @@
 }
 </script>
 <style>
-/* ---------- tokens ---------- */
+/* ---------- tokens: spray cans, ink, and two walls ---------- */
 :root {
   color-scheme: light;
-  --plane: #faf6f0; --surface: #ffffff; --surface-2: #fbf7f1;
-  --text-1: #17120e; --text-2: #574f46; --text-3: #6f665b;
-  --border: rgba(23,18,14,0.10); --border-2: rgba(23,18,14,0.20);
-  --ghost: rgba(23,18,14,0.042);
-  --accent: #b4530a; --accent-soft: rgba(180,83,10,0.09); --accent-edge: rgba(180,83,10,0.28);
-  --grain: 0.028;
-  --shadow: 0 1px 2px rgba(23,18,14,0.05), 0 10px 26px -14px rgba(23,18,14,0.20);
-  --shadow-lift: 0 1px 2px rgba(23,18,14,0.06), 0 20px 42px -20px rgba(23,18,14,0.30);
-  --sweep: linear-gradient(90deg,#ffc247,#f7913a,#ef5f63,#d93b83,#f7913a,#ffc247);
-  --sweep-3: linear-gradient(90deg,#ffc247,#ef5f63,#d93b83);
-  --sweep-text: linear-gradient(90deg,#c2650a,#c9412f,#b0245e,#c9412f,#c2650a);
+
+  /* the wall: primer-coated concrete */
+  --plane: #efe8dc; --surface: #fffdf8; --surface-2: #f7f1e5;
+  --text-1: #100c14; --text-2: #4c4356; --text-3: #59505f;
+
+  /* the ink line — black marker on paper, paint pen on the night wall */
+  --line: #100c14;
+  --border: rgba(16,12,20,0.18); --ghost: rgba(16,12,20,0.055);
+
+  /* text-safe accents (used as type, so they must clear the ground) */
+  --accent: #ab0058; --accent-2: #06626e;
+
+  /* the five cans — identical in both themes, always worn with ink text */
+  --can-magenta: #ff2e88;
+  --can-cyan:    #12e0e8;
+  --can-acid:    #c6f000;
+  --can-orange:  #ff6a00;
+  --can-violet:  #7d3cff;
+  --on-can: #100c14;
+
+  --halftone: 0.08;
+  --mist-a: rgba(255,46,136,0.10);
+  --mist-b: rgba(18,224,232,0.10);
+  --mist-c: rgba(198,240,0,0.09);
 }
 @media (prefers-color-scheme: dark) {
   :root:where(:not([data-theme="light"])) {
     color-scheme: dark;
-    --plane: #100e0c; --surface: #1a1613; --surface-2: #201b16;
-    --text-1: #f7f2ea; --text-2: #b3aaa0; --text-3: #8d8479;
-    --border: rgba(247,242,234,0.09); --border-2: rgba(247,242,234,0.18);
-    --ghost: rgba(247,242,234,0.045);
-    --accent: #ffa23c; --accent-soft: rgba(255,162,60,0.10); --accent-edge: rgba(255,162,60,0.34);
-    --grain: 0.055;
-    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 10px 26px -14px rgba(0,0,0,0.6);
-    --shadow-lift: 0 1px 2px rgba(0,0,0,0.5), 0 20px 42px -20px rgba(0,0,0,0.75);
-    --sweep-text: var(--sweep);
+    --plane: #0b0910; --surface: #16121d; --surface-2: #1f1929;
+    --text-1: #f4efe6; --text-2: #b7aec1; --text-3: #8e8599;
+    --line: #f4efe6;
+    --border: rgba(244,239,230,0.20); --ghost: rgba(244,239,230,0.06);
+    --accent: #ff2e88; --accent-2: #12e0e8;
+    --halftone: 0.06;
+    --mist-a: rgba(255,46,136,0.17);
+    --mist-b: rgba(18,224,232,0.13);
+    --mist-c: rgba(198,240,0,0.10);
   }
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --plane: #100e0c; --surface: #1a1613; --surface-2: #201b16;
-  --text-1: #f7f2ea; --text-2: #b3aaa0; --text-3: #8d8479;
-  --border: rgba(247,242,234,0.09); --border-2: rgba(247,242,234,0.18);
-  --ghost: rgba(247,242,234,0.045);
-  --accent: #ffa23c; --accent-soft: rgba(255,162,60,0.10); --accent-edge: rgba(255,162,60,0.34);
-  --grain: 0.055;
-  --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 10px 26px -14px rgba(0,0,0,0.6);
-  --shadow-lift: 0 1px 2px rgba(0,0,0,0.5), 0 20px 42px -20px rgba(0,0,0,0.75);
-  --sweep-text: var(--sweep);
+  --plane: #0b0910; --surface: #16121d; --surface-2: #1f1929;
+  --text-1: #f4efe6; --text-2: #b7aec1; --text-3: #8e8599;
+  --line: #f4efe6;
+  --border: rgba(244,239,230,0.20); --ghost: rgba(244,239,230,0.06);
+  --accent: #ff2e88; --accent-2: #12e0e8;
+  --halftone: 0.06;
+  --mist-a: rgba(255,46,136,0.17);
+  --mist-b: rgba(18,224,232,0.13);
+  --mist-c: rgba(198,240,0,0.10);
 }
 
 /* ---------- base ---------- */
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 body {
-  margin: 0; background: var(--plane); color: var(--text-1);
-  font: 400 15.5px/1.62 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  margin: 0; background: var(--plane); color: var(--text-1); overflow-x: hidden;
+  font: 400 15.5px/1.6 "Archivo", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
-::selection { background: var(--accent); color: var(--plane); }
+/* spray mist hanging on the wall */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(48vw 42vw at 4% -8%,  var(--mist-a), transparent 70%),
+    radial-gradient(52vw 46vw at 104% 22%, var(--mist-b), transparent 70%),
+    radial-gradient(46vw 40vw at 20% 108%, var(--mist-c), transparent 70%);
+}
+::selection { background: var(--can-acid); color: var(--on-can); }
 a { color: inherit; }
 
-.display { font-family: "Bricolage Grotesque", system-ui, sans-serif; font-optical-sizing: auto; }
+.display { font-family: "Bungee", "Archivo", system-ui, sans-serif; font-weight: 400; }
+.marker  { font-family: "Permanent Marker", "Bungee", system-ui, sans-serif; font-weight: 400; }
 .mono {
   font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
   font-variant-numeric: tabular-nums;
 }
 
-/* ---------- ambience: grain + spectrum rail ---------- */
-.grain {
-  position: fixed; inset: 0; z-index: 2; pointer-events: none; opacity: var(--grain);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+/* ---------- ambience: halftone print + hazard band + paint runs ---------- */
+.halftone {
+  position: fixed; inset: 0; z-index: 2; pointer-events: none; opacity: var(--halftone);
+  background-image: radial-gradient(var(--line) 1px, transparent 1.4px);
+  background-size: 5px 5px;
 }
-.rail { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 3; overflow: hidden; pointer-events: none; }
-.rail i { position: absolute; inset: 0; width: 200%; background: var(--sweep); animation: drift 22s linear infinite; }
-@keyframes drift { to { transform: translate3d(-50%, 0, 0); } }
+.band {
+  position: fixed; top: 0; left: 0; right: 0; height: 11px; z-index: 6;
+  overflow: hidden; pointer-events: none; border-bottom: 2px solid var(--line);
+}
+.band i {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(112deg,
+    var(--can-magenta) 0 20%, var(--can-orange) 20% 40%, var(--can-acid) 40% 60%,
+    var(--can-cyan) 60% 80%, var(--can-violet) 80% 100%);
+  background-size: 152px 100%; background-repeat: repeat-x;
+  animation: roll 7.5s linear infinite;
+}
+@keyframes roll { to { background-position-x: -152px; } }
+
+/* paint that ran off the band before it dried */
+.runs { position: fixed; top: 11px; left: 0; right: 0; height: 40px; z-index: 5; pointer-events: none; }
+.runs i {
+  position: absolute; top: 0; left: var(--x); width: var(--w, 7px); height: var(--h, 18px);
+  background: var(--c); border-radius: 0 0 4px 4px;
+}
+.runs i::after {
+  content: ""; position: absolute; left: 50%; bottom: 0; transform: translate(-50%, 42%);
+  width: calc(var(--w, 7px) + 3px); height: calc(var(--w, 7px) + 3px);
+  border-radius: 50%; background: inherit;
+}
 
 /* ---------- shell ---------- */
-.wrap { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; padding: 26px 22px 72px; }
+.wrap { position: relative; z-index: 1; max-width: 780px; margin: 0 auto; padding: 58px 22px 76px; }
 
 .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.mark { font-size: 13.5px; letter-spacing: -0.01em; text-decoration: none; color: var(--text-2); }
-.mark b { font-weight: 650; color: var(--text-1); }
-.mark:hover { color: var(--text-1); }
+.mark {
+  font-family: "Permanent Marker", system-ui, sans-serif;
+  font-size: 19px; line-height: 1; letter-spacing: 0.005em;
+  text-decoration: none; color: var(--text-1);
+  transform: rotate(-2.2deg); transform-origin: left center;
+  transition: transform .18s cubic-bezier(.2,.8,.3,1), color .18s ease;
+}
+.mark b { font-weight: inherit; color: var(--accent); }
+.mark:hover { transform: rotate(-2.2deg) translateY(-2px); color: var(--accent); }
 
 .btn-icon {
   appearance: none; background: var(--surface); color: var(--text-1);
-  border: 1px solid var(--border-2); border-radius: 10px;
-  width: 34px; height: 34px; font-size: 14px; line-height: 1; cursor: pointer;
+  border: 2.5px solid var(--line); border-radius: 3px;
+  width: 36px; height: 36px; font-size: 15px; line-height: 1; cursor: pointer;
   display: grid; place-items: center; flex-shrink: 0;
-  transition: background .15s ease, border-color .15s ease, color .15s ease;
+  box-shadow: 4px 4px 0 var(--can-acid);
+  transition: box-shadow .15s ease, transform .15s ease, background .15s ease;
 }
-.btn-icon:hover { background: var(--ghost); border-color: var(--accent-edge); color: var(--accent); }
-.btn-icon:active { transform: translateY(0.5px); }
-:where(a, button):focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.btn-icon:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--can-acid); }
+.btn-icon:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--can-acid); }
+:where(a, button):focus-visible { outline: 3px solid var(--can-acid); outline-offset: 3px; }
 
 /* ---------- hero ---------- */
 .hero {
-  padding: 58px 0 46px;
+  padding: 52px 0 44px;
   display: grid; grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center; column-gap: 24px;
+  align-items: center; column-gap: 22px;
 }
+/* the ON AIR strip — this is a pirate radio station, after all */
 .kicker {
-  display: inline-flex; align-items: center; gap: 9px; margin: 0 0 20px;
-  font-size: 11.5px; letter-spacing: 0.11em; text-transform: uppercase; color: var(--text-3);
+  display: inline-flex; align-items: center; gap: 9px; margin: 0 0 22px;
+  font-family: "Bungee", system-ui, sans-serif; font-size: 10.5px; line-height: 1;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--plane);
+  background: var(--line); border: 2.5px solid var(--line); border-radius: 2px;
+  padding: 7px 11px 6px; transform: rotate(-1.1deg);
+  box-shadow: 4px 4px 0 var(--can-cyan);
 }
 h1 {
-  font-family: "Bricolage Grotesque", system-ui, sans-serif; font-weight: 700;
-  font-size: clamp(38px, 8.4vw, 62px); line-height: 1.02; letter-spacing: -0.035em;
-  margin: 0 0 18px; text-wrap: balance; max-width: 15ch;
+  font-family: "Bungee", system-ui, sans-serif; font-weight: 400;
+  font-size: clamp(29px, 6.1vw, 45px); line-height: 1.12; letter-spacing: -0.004em;
+  margin: 0 0 20px; text-wrap: balance; max-width: 14ch;
+  color: var(--text-1); text-shadow: 4px 4px 0 var(--can-cyan);
 }
-.vibe { color: var(--accent); font-style: normal; }
-@supports (-webkit-background-clip: text) or (background-clip: text) {
-  .vibe {
-    background: var(--sweep-text); background-size: 260% 100%;
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-    animation: shift 11s linear infinite;
-  }
+/* the one word that got tagged */
+.vibe {
+  font-style: normal; color: var(--can-acid);
+  text-shadow:
+     2px 0 0 var(--on-can), -2px 0 0 var(--on-can),  0 2px 0 var(--on-can),  0 -2px 0 var(--on-can),
+     2px 2px 0 var(--on-can), -2px -2px 0 var(--on-can), 2px -2px 0 var(--on-can), -2px 2px 0 var(--on-can),
+     7px 7px 0 var(--can-magenta);
 }
-@keyframes shift { to { background-position: 260% 0; } }
-.lede { margin: 0; max-width: 46ch; font-size: 16.5px; color: var(--text-2); text-wrap: pretty; }
+.lede { margin: 0; max-width: 44ch; font-size: 16px; color: var(--text-2); text-wrap: pretty; }
 
-/* equaliser — the signature motif */
+/* equaliser — the signature motif, now in five cans */
 .eq { display: inline-flex; align-items: flex-end; gap: 2px; height: 12px; }
 .eq i {
-  width: 2.5px; border-radius: 1.5px; background: var(--accent);
-  height: 100%; transform-origin: bottom; transform: scaleY(0.34);
+  width: 3px; height: 100%; transform-origin: bottom; transform: scaleY(0.34);
   animation: pulse 940ms ease-in-out infinite alternate;
 }
-.eq i:nth-child(1) { animation-duration: 760ms; }
-.eq i:nth-child(2) { animation-duration: 1180ms; animation-delay: -320ms; }
-.eq i:nth-child(3) { animation-duration: 880ms; animation-delay: -540ms; }
-.eq i:nth-child(4) { animation-duration: 1320ms; animation-delay: -160ms; }
+.eq i:nth-child(1) { background: var(--can-acid);    animation-duration: 760ms; }
+.eq i:nth-child(2) { background: var(--can-cyan);    animation-duration: 1180ms; animation-delay: -320ms; }
+.eq i:nth-child(3) { background: var(--can-magenta); animation-duration: 880ms;  animation-delay: -540ms; }
+.eq i:nth-child(4) { background: var(--can-orange);  animation-duration: 1320ms; animation-delay: -160ms; }
 @keyframes pulse { from { transform: scaleY(0.22); } to { transform: scaleY(1); } }
 
-/* ---------- the mascot ---------- */
+/* ---------- the mascot, now cel-shaded and die-cut ---------- */
 .hero-copy { min-width: 0; }
-.mon {
-  width: clamp(126px, 19vw, 168px); height: auto;
-  justify-self: end; overflow: visible;
-}
-/* only the animated parts get fill-box, so the static presentation
-   transforms below keep resolving in plain user space */
+.mon { width: clamp(126px, 19vw, 170px); height: auto; justify-self: end; overflow: visible; }
+.mon-keyline > * { fill: none; stroke: var(--line); stroke-width: 9; stroke-linejoin: round; }
 .mon-bob, .mon-crest rect, .mon-eyes, .mon-tail, .mon-note { transform-box: fill-box; }
 
-/* it breathes */
 .mon-bob { transform-origin: 50% 100%; animation: monBob 2.6s cubic-bezier(.45,0,.55,1) infinite alternate; }
 @keyframes monBob {
   from { transform: translateY(3px) scale(1.014, 0.986); }
   to   { transform: translateY(-6px) scale(0.99, 1.01); }
 }
-
-/* its crest is the same equaliser that marks every track */
 .mon-crest rect {
   transform-origin: 50% 100%; transform: scaleY(var(--h, .6));
   animation: monEq var(--t, 1s) ease-in-out infinite alternate;
   animation-delay: var(--d, 0ms);
 }
 @keyframes monEq { from { transform: scaleY(0.26); } to { transform: scaleY(1); } }
-
 .mon-eyes { transform-origin: 50% 50%; animation: monBlink 5.4s ease-in-out infinite; }
 @keyframes monBlink { 0%, 91%, 100% { transform: scaleY(1); } 94%, 96% { transform: scaleY(0.08); } }
-
 .mon-tail { transform-origin: 0% 100%; animation: monTail 2.3s ease-in-out infinite alternate; }
 @keyframes monTail { from { transform: rotate(-7deg); } to { transform: rotate(8deg); } }
-
 .mon-note { opacity: 0; transform-origin: 50% 50%; animation: monNote 3.6s ease-out infinite; animation-delay: var(--d, 0ms); }
 @keyframes monNote {
   0%   { opacity: 0; transform: translate(0, 4px) scale(0.6) rotate(-10deg); }
-  18%  { opacity: 0.92; }
-  72%  { opacity: 0.5; }
+  18%  { opacity: 0.95; }
+  72%  { opacity: 0.55; }
   100% { opacity: 0; transform: translate(var(--dx, 8px), -32px) scale(1.04) rotate(14deg); }
 }
-
-/* it perks up when you come near */
 .mon-cheek { transition: opacity .25s ease; }
 .mon:hover .mon-bob { animation-duration: .9s; }
 .mon:hover .mon-crest rect { animation-duration: .42s; }
 .mon:hover .mon-cheek { opacity: .95; }
 
-/* ---------- section markers ---------- */
-.side { margin-top: 40px; }
+/* ---------- section markers: tape labels ---------- */
+.side { margin-top: 46px; }
 .side-label {
-  display: flex; align-items: center; gap: 14px; margin: 0 0 16px;
-  font-size: 11.5px; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase;
-  color: var(--text-3);
+  display: flex; align-items: center; gap: 0; margin: 0 0 20px;
+  font-family: "Bungee", system-ui, sans-serif; font-weight: 400;
+  font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--text-1);
 }
-.side-label::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+.side-label span {
+  background: var(--can-acid); color: var(--on-can);
+  border: 2.5px solid var(--line); border-radius: 2px;
+  padding: 6px 12px 5px; transform: rotate(-1.4deg);
+  box-shadow: 4px 4px 0 var(--line);
+}
+.side-label::after { content: ""; flex: 1; height: 3px; margin-left: 18px; background: var(--line); }
 
-/* ---------- A-side: two unlike cards ---------- */
-.aside-grid { display: grid; grid-template-columns: 1.32fr 1fr; gap: 14px; }
+/* ---------- A-side: two stickers on the wall ---------- */
+.aside-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px; }
 .feature {
   display: flex; flex-direction: column; text-decoration: none;
-  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
-  padding: 20px 21px 18px; box-shadow: var(--shadow);
-  transition: transform .22s cubic-bezier(.2,.8,.3,1), border-color .22s ease, box-shadow .22s ease, background .22s ease;
+  background: var(--surface); border: 3px solid var(--line); border-radius: 4px;
+  padding: 20px 21px 18px;
+  transform: rotate(var(--rot, 0deg));
+  box-shadow: 7px 7px 0 var(--can, var(--can-magenta));
+  transition: transform .2s cubic-bezier(.2,.8,.3,1), box-shadow .2s cubic-bezier(.2,.8,.3,1), background .2s ease;
 }
-.feature--lead { border-radius: 18px; border-color: var(--accent-edge); overflow: hidden; }
+.feature--lead { --can: var(--can-magenta); --rot: -1.1deg; overflow: hidden; }
+.feature--sec  { --can: var(--can-cyan);    --rot: 1deg; }
 .feature--lead::before {
-  content: ""; display: block; height: 2px; margin: -20px -21px 18px; background: var(--sweep-3);
+  content: ""; display: block; height: 14px; margin: -20px -21px 18px;
+  border-bottom: 3px solid var(--line);
+  background-image: repeating-linear-gradient(115deg,
+    var(--can-magenta) 0 13px, var(--on-can) 13px 26px);
 }
-.feature:hover { transform: translateY(-3px); border-color: var(--border-2); box-shadow: var(--shadow-lift); background: var(--surface-2); }
-.feature--lead:hover { border-color: var(--accent-edge); }
+.feature:hover {
+  transform: rotate(0deg) translate(-3px, -3px);
+  box-shadow: 12px 12px 0 var(--can); background: var(--surface-2);
+}
 .tag {
-  align-self: flex-start; font-size: 10.5px; letter-spacing: 0.09em; text-transform: uppercase;
-  color: var(--text-3); border: 1px solid var(--border); border-radius: 999px; padding: 3px 9px;
+  align-self: flex-start; font-family: "Bungee", system-ui, sans-serif;
+  font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--on-can); background: var(--can-acid);
+  border: 2px solid var(--on-can); border-radius: 2px; padding: 4px 8px 3px;
+  transform: rotate(-2.6deg);
 }
+.feature--sec .tag { background: var(--can-orange); }
 .feature h3 {
-  font-family: "Bricolage Grotesque", system-ui, sans-serif; font-weight: 650;
-  letter-spacing: -0.022em; margin: 13px 0 7px; line-height: 1.14;
+  font-family: "Bungee", system-ui, sans-serif; font-weight: 400;
+  letter-spacing: -0.004em; margin: 15px 0 9px; line-height: 1.16; color: var(--text-1);
 }
-.feature--lead h3 { font-size: 27px; }
-.feature:not(.feature--lead) h3 { font-size: 20px; }
+.feature--lead h3 { font-size: 23px; }
+.feature--sec h3 { font-size: 17px; }
 .feature p { margin: 0 0 auto; font-size: 13.6px; line-height: 1.55; color: var(--text-2); }
 .go {
-  display: inline-flex; align-items: center; gap: 6px; margin-top: 18px;
-  font-size: 13px; font-weight: 550; color: var(--accent);
+  display: inline-flex; align-items: center; gap: 7px; margin-top: 18px;
+  font-family: "Bungee", system-ui, sans-serif; font-size: 11.5px;
+  letter-spacing: 0.03em; text-transform: uppercase; color: var(--accent);
 }
-/* only the lead card's CTA carries the accent, so the A-side actually has a lead */
-.feature:not(.feature--lead) .go { color: var(--text-2); transition: color .22s ease; }
-.feature:not(.feature--lead):hover .go { color: var(--accent); }
+.feature--sec .go { color: var(--text-2); transition: color .2s ease; }
+.feature--sec:hover .go { color: var(--accent-2); }
 .go .arrow { transition: transform .22s cubic-bezier(.2,.8,.3,1); }
-.feature:hover .go .arrow { transform: translate(2px, -2px); }
-.arrow { width: 14px; height: 14px; flex-shrink: 0; }
+.feature:hover .go .arrow { transform: translate(3px, -3px); }
+.arrow { width: 15px; height: 15px; flex-shrink: 0; }
 
 /* waveform on the lead card */
 .wave { display: flex; align-items: flex-end; gap: 2px; height: 30px; margin-top: 18px; }
 .wave i {
-  flex: 1 1 0; min-width: 0; height: 100%; border-radius: 1px; background: var(--border-2);
+  flex: 1 1 0; min-width: 0; height: 100%; background: var(--text-3);
   transform-origin: bottom; transform: scaleY(var(--h, .5));
   transition: background .3s ease;
 }
-.feature--lead:hover .wave i { background: var(--accent); animation: bob 1.15s ease-in-out infinite alternate; animation-delay: var(--d, 0ms); }
+.feature--lead:hover .wave i { background: var(--can-magenta); animation: bob 1.15s ease-in-out infinite alternate; animation-delay: var(--d, 0ms); }
 @keyframes bob { to { transform: scaleY(calc(var(--h, .5) * 1.5)); } }
 
 /* sparkline on the second card */
-.spark { display: block; width: 100%; height: 34px; margin-top: 16px; overflow: visible; }
-.spark { color: var(--text-3); transition: color .3s ease; }
-.feature:hover .spark { color: var(--accent); }
-.spark path.line { stroke: currentColor; stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-.spark path.area { fill: url(#sparkFill); opacity: .6; transition: opacity .3s ease; }
-.feature:hover .spark path.area { opacity: 1; }
+.spark { display: block; width: 100%; height: 34px; margin-top: 16px; overflow: visible; color: var(--text-3); transition: color .3s ease; }
+.feature--sec:hover .spark { color: var(--accent-2); }
+.spark path.line { stroke: currentColor; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.spark path.area { fill: url(#sparkFill); opacity: .55; transition: opacity .3s ease; }
+.feature--sec:hover .spark path.area { opacity: 1; }
 
-/* ---------- Deep cuts: the tracklist ---------- */
+/* ---------- Deep cuts: the tracklist, tagged on hover ---------- */
 .tracks { list-style: none; margin: 0; padding: 0; counter-reset: track 2; }
-.tracks li { counter-increment: track; border-top: 1px solid var(--border); }
-.tracks li:last-child { border-bottom: 1px solid var(--border); }
+.tracks li { counter-increment: track; border-top: 2px solid var(--border); }
+.tracks li:last-child { border-bottom: 2px solid var(--border); }
+.tracks li:nth-child(5n+1) { --can: var(--can-magenta); }
+.tracks li:nth-child(5n+2) { --can: var(--can-cyan); }
+.tracks li:nth-child(5n+3) { --can: var(--can-acid); }
+.tracks li:nth-child(5n+4) { --can: var(--can-orange); }
+.tracks li:nth-child(5n+5) { --can: var(--can-violet); }
 .track {
-  display: grid; grid-template-columns: 2.6rem minmax(0, 1fr) auto 16px;
+  display: grid; grid-template-columns: 2.7rem minmax(0, 1fr) auto 16px;
   grid-template-areas: "idx body tag arrow";
   align-items: center; column-gap: 14px;
-  text-decoration: none; padding: 15px 14px; margin-inline: -14px; border-radius: 11px;
-  transition: background .18s ease;
+  text-decoration: none; padding: 15px 14px; margin-inline: -14px; border-radius: 3px;
+  transition: background .16s ease, transform .16s cubic-bezier(.2,.8,.3,1), box-shadow .16s ease;
 }
-.track:hover { background: var(--ghost); }
+.track:hover, .track:focus-visible {
+  background: var(--can); transform: translateX(5px);
+  box-shadow: inset 0 0 0 2.5px var(--on-can);
+}
+.track:hover .track-title, .track:hover .track-desc,
+.track:hover .track-tag, .track:hover .arrow,
+.track:hover .track-idx::before,
+.track:focus-visible .track-title, .track:focus-visible .track-desc,
+.track:focus-visible .track-tag, .track:focus-visible .arrow { color: var(--on-can); }
+
 .track-idx { grid-area: idx; position: relative; display: grid; place-items: center; height: 16px; }
 .track-idx::before {
   content: counter(track, decimal-leading-zero);
-  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-  font-variant-numeric: tabular-nums; font-size: 12.5px; color: var(--text-3);
-  transition: opacity .18s ease;
+  font-family: "Bungee", system-ui, sans-serif; font-variant-numeric: tabular-nums;
+  font-size: 12px; color: var(--text-3); transition: opacity .18s ease, color .16s ease;
 }
 .track-idx .eq { position: absolute; opacity: 0; transition: opacity .18s ease; }
-.track-idx .eq i { animation-play-state: paused; }
+.track-idx .eq i { animation-play-state: paused; background: var(--on-can); }
 .track:hover .track-idx::before, .track:focus-visible .track-idx::before { opacity: 0; }
 .track:hover .track-idx .eq, .track:focus-visible .track-idx .eq { opacity: 1; }
 .track:hover .track-idx .eq i, .track:focus-visible .track-idx .eq i { animation-play-state: running; }
 
 .track-body { grid-area: body; min-width: 0; }
 .track-title {
-  display: block; font-family: "Bricolage Grotesque", system-ui, sans-serif;
-  font-weight: 600; font-size: 16px; letter-spacing: -0.016em; line-height: 1.25;
-  transition: color .18s ease;
+  display: block; font-family: "Bungee", system-ui, sans-serif; font-weight: 400;
+  font-size: 15px; letter-spacing: -0.002em; line-height: 1.3; color: var(--text-1);
+  transition: color .16s ease;
 }
-.track:hover .track-title { color: var(--accent); }
-.track-desc { display: block; margin-top: 3px; font-size: 13.2px; line-height: 1.5; color: var(--text-3); }
-.track-tag { grid-area: tag; font-size: 10.5px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--text-3); white-space: nowrap; }
-.track .arrow { grid-area: arrow; color: var(--text-3); opacity: 0; transform: translate(-3px, 3px); transition: opacity .2s ease, transform .2s cubic-bezier(.2,.8,.3,1); }
-.track:hover .arrow, .track:focus-visible .arrow { opacity: 1; transform: none; color: var(--accent); }
+.track-desc { display: block; margin-top: 5px; font-size: 13.2px; line-height: 1.5; color: var(--text-3); transition: color .16s ease; }
+.track-tag {
+  grid-area: tag; font-family: "Bungee", system-ui, sans-serif; font-size: 10.5px;
+  letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-3);
+  white-space: nowrap; transition: color .16s ease;
+}
+.track .arrow { grid-area: arrow; color: var(--text-3); opacity: 0; transform: translate(-3px, 3px); transition: opacity .18s ease, transform .18s cubic-bezier(.2,.8,.3,1), color .16s ease; }
+.track:hover .arrow, .track:focus-visible .arrow { opacity: 1; transform: none; }
 
 /* ---------- footer ---------- */
 footer {
-  margin-top: 46px; padding-top: 20px; border-top: 1px solid var(--border);
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px;
+  margin-top: 50px; padding-top: 20px; border-top: 3px solid var(--line);
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;
   font-size: 12.5px; color: var(--text-3);
 }
-footer a { text-decoration: none; border-bottom: 1px solid var(--border-2); padding-bottom: 1px; }
-footer a:hover { color: var(--accent); border-color: var(--accent-edge); }
+footer .scrawl {
+  font-family: "Permanent Marker", system-ui, sans-serif; font-size: 14px;
+  color: var(--text-2); transform: rotate(-1deg);
+}
+footer a {
+  font-family: "Bungee", system-ui, sans-serif; font-size: 10.5px;
+  letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none;
+  color: var(--on-can); background: var(--can-cyan);
+  border: 2px solid var(--on-can); border-radius: 2px; padding: 5px 9px 4px;
+  transform: rotate(1.6deg);
+  transition: transform .16s cubic-bezier(.2,.8,.3,1), background .16s ease;
+}
+footer a:hover { background: var(--can-acid); transform: rotate(1.6deg) translateY(-2px); }
 
 /* ---------- entrance ---------- */
-.js-reveal .reveal { opacity: 0; transform: translateY(12px); }
+/* `translate` rather than `transform`, so the reveal never fights the
+   sticker rotation or the hover lift that both live on `transform` */
+.js-reveal .reveal { opacity: 0; translate: 0 14px; }
 .js-reveal .reveal.is-in {
-  opacity: 1; transform: none;
-  transition: opacity .55s cubic-bezier(.2,.8,.3,1), transform .55s cubic-bezier(.2,.8,.3,1);
+  opacity: 1; translate: 0 0;
+  transition: opacity .5s cubic-bezier(.2,.8,.3,1), translate .5s cubic-bezier(.2,.8,.3,1);
   transition-delay: calc(var(--i, 0) * 45ms);
 }
 
 /* ---------- responsive ---------- */
 @media (max-width: 720px) {
   .aside-grid { grid-template-columns: 1fr; }
-  .feature--lead h3 { font-size: 24px; }
-  .hero { padding: 44px 0 38px; }
+  .feature--lead h3 { font-size: 21px; }
+  .hero { padding: 40px 0 36px; }
 }
 @media (max-width: 640px) {
-  .hero { grid-template-columns: 1fr; row-gap: 12px; }
-  .mon { justify-self: start; order: -1; width: 118px; }
+  .hero { grid-template-columns: 1fr; row-gap: 14px; }
+  .mon { justify-self: start; order: -1; width: 122px; }
 }
 @media (max-width: 560px) {
   .track {
-    grid-template-columns: 2.1rem minmax(0, 1fr) 16px;
+    grid-template-columns: 2.2rem minmax(0, 1fr) 16px;
     grid-template-areas: "idx body arrow" ". tag .";
-    row-gap: 7px;
-    align-items: start;
+    row-gap: 8px; align-items: start;
   }
   /* rows run 3-4 lines tall on narrow screens — pin the marks to the title line
      rather than letting them drift to the vertical middle of the block */
   .track-idx { margin-top: 3px; }
   .track .arrow { margin-top: 4px; }
   .track-tag { justify-self: start; }
+  .feature, .feature:hover { box-shadow: 5px 5px 0 var(--can); }
 }
 
 /* ---------- motion off ---------- */
@@ -391,8 +482,17 @@ footer a:hover { color: var(--accent); border-color: var(--accent-edge); }
 </style>
 </head>
 <body>
-<div class="grain" aria-hidden="true"></div>
-<div class="rail" aria-hidden="true"><i></i></div>
+<div class="halftone" aria-hidden="true"></div>
+<div class="band" aria-hidden="true"><i></i></div>
+<div class="runs" aria-hidden="true">
+  <i style="--x:6%;  --w:7px;  --h:19px; --c:var(--can-magenta)"></i>
+  <i style="--x:17%; --w:5px;  --h:11px; --c:var(--can-orange)"></i>
+  <i style="--x:29%; --w:9px;  --h:28px; --c:var(--can-acid)"></i>
+  <i style="--x:41%; --w:6px;  --h:14px; --c:var(--can-cyan)"></i>
+  <i style="--x:55%; --w:8px;  --h:23px; --c:var(--can-violet)"></i>
+  <i style="--x:67%; --w:5px;  --h:9px;  --c:var(--can-magenta)"></i>
+  <i style="--x:78%; --w:7px;  --h:17px; --c:var(--can-orange)"></i>
+</div>
 
 <div class="wrap">
   <header class="topbar">
@@ -403,86 +503,95 @@ footer a:hover { color: var(--accent); border-color: var(--accent-edge); }
   <main>
   <section class="hero">
     <div class="hero-copy">
-      <p class="kicker mono"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span> now playing · <span id="count">11</span> side projects</p>
+      <p class="kicker"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span> now playing · <span id="count">11</span> side projects</p>
       <h1>Small things, built on <em class="vibe">vibes</em>.</h1>
       <p class="lede">Self-contained web tools — no backend, no build step, nothing to install. Open one and it just runs.</p>
     </div>
 
     <svg class="mon" viewBox="0 0 170 178" fill="none" aria-hidden="true" focusable="false">
       <defs>
-        <linearGradient id="monBody" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#ffc74f"/>
-          <stop offset=".52" stop-color="#f89239"/>
-          <stop offset="1" stop-color="#ee6437"/>
-        </linearGradient>
-        <linearGradient id="monBelly" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#fff6e2"/>
-          <stop offset="1" stop-color="#ffdfae"/>
-        </linearGradient>
-        <linearGradient id="monTail" x1="0" y1="1" x2=".85" y2="0">
-          <stop offset="0" stop-color="#f26a3d"/>
-          <stop offset="1" stop-color="#d93b83"/>
-        </linearGradient>
+        <clipPath id="monBodyClip">
+          <path d="M85 64c28 0 49 20 49 47 0 28-22 45-49 45s-49-17-49-45c0-27 21-47 49-47z"/>
+        </clipPath>
       </defs>
 
       <!-- what it is humming, drifting off -->
       <g transform="translate(133 86)"><g class="mon-note" style="--d:0ms;--dx:10px">
-        <ellipse cx="-1" cy="6" rx="4.3" ry="3.3" fill="#d93b83" transform="rotate(-20 -1 6)"/>
-        <path d="M3 5.4V-7" stroke="#d93b83" stroke-width="2" stroke-linecap="round"/>
-        <path d="M3 -7c4.2 1.4 5.6 4 5 7.4" stroke="#d93b83" stroke-width="2" stroke-linecap="round"/>
+        <ellipse cx="-1" cy="6" rx="4.3" ry="3.3" fill="#ff2e88" transform="rotate(-20 -1 6)"/>
+        <path d="M3 5.4V-7" stroke="#ff2e88" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M3 -7c4.2 1.4 5.6 4 5 7.4" stroke="#ff2e88" stroke-width="2.2" stroke-linecap="round"/>
       </g></g>
       <g transform="translate(151 101)"><g class="mon-note" style="--d:-1200ms;--dx:13px">
-        <ellipse cx="-1" cy="5" rx="3.6" ry="2.8" fill="#ef5f63" transform="rotate(-20 -1 5)"/>
-        <path d="M2.4 4.5V-6" stroke="#ef5f63" stroke-width="1.8" stroke-linecap="round"/>
+        <ellipse cx="-1" cy="5" rx="3.6" ry="2.8" fill="#12e0e8" transform="rotate(-20 -1 5)"/>
+        <path d="M2.4 4.5V-6" stroke="#12e0e8" stroke-width="2" stroke-linecap="round"/>
       </g></g>
       <g transform="translate(141 66)"><g class="mon-note" style="--d:-2400ms;--dx:-7px">
-        <ellipse cx="-1" cy="5" rx="3.6" ry="2.8" fill="#f7913a" transform="rotate(-20 -1 5)"/>
-        <path d="M2.4 4.5V-6" stroke="#f7913a" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M2.4 -6c3.6 1.2 4.8 3.4 4.3 6.3" stroke="#f7913a" stroke-width="1.8" stroke-linecap="round"/>
+        <ellipse cx="-1" cy="5" rx="3.6" ry="2.8" fill="#c6f000" transform="rotate(-20 -1 5)"/>
+        <path d="M2.4 4.5V-6" stroke="#c6f000" stroke-width="2" stroke-linecap="round"/>
+        <path d="M2.4 -6c3.6 1.2 4.8 3.4 4.3 6.3" stroke="#c6f000" stroke-width="2" stroke-linecap="round"/>
       </g></g>
 
       <g class="mon-bob">
-        <!-- crest: the equaliser again, wearing it as a haircut -->
-        <g class="mon-crest">
-          <rect x="61" y="28" width="7" height="44" rx="3.5" fill="#ffc247" style="--h:.46;--t:780ms;--d:0ms"/>
-          <rect x="71" y="28" width="7" height="44" rx="3.5" fill="#f7913a" style="--h:.8;--t:1180ms;--d:-320ms"/>
-          <rect x="81" y="28" width="7" height="44" rx="3.5" fill="#ef5f63" style="--h:.58;--t:900ms;--d:-540ms"/>
-          <rect x="91" y="28" width="7" height="44" rx="3.5" fill="#d93b83" style="--h:1;--t:1320ms;--d:-160ms"/>
-          <rect x="101" y="28" width="7" height="44" rx="3.5" fill="#f7913a" style="--h:.5;--t:1000ms;--d:-700ms"/>
+        <!-- die-cut keyline: ink on primer, paint-pen white on the night wall -->
+        <g class="mon-keyline">
+          <path d="M39 99c-14-11-24-4-21 7 3 10 15 8 21 1z"/>
+          <path d="M131 99c14-11 24-4 21 7-3 10-15 8-21 1z"/>
+          <ellipse cx="66" cy="157" rx="12" ry="7"/>
+          <ellipse cx="104" cy="157" rx="12" ry="7"/>
+          <path d="M85 64c28 0 49 20 49 47 0 28-22 45-49 45s-49-17-49-45c0-27 21-47 49-47z"/>
         </g>
 
-        <!-- fins, feet and tail sit behind the body so the joins never show -->
-        <path d="M39 99c-14-11-24-4-21 7 3 10 15 8 21 1z" fill="#ee6437"/>
-        <path d="M131 99c14-11 24-4 21 7-3 10-15 8-21 1z" fill="#ee6437"/>
-        <ellipse cx="66" cy="157" rx="12" ry="7" fill="#e85c33"/>
-        <ellipse cx="104" cy="157" rx="12" ry="7" fill="#e85c33"/>
-        <g class="mon-tail">
-          <path d="M116 150c22 10 46 2 47-17 0-11-11-15-15-7 7 5 4 14-7 16-8 1-18 3-25 8z" fill="url(#monTail)"/>
+        <!-- crest: the equaliser again, worn as a haircut -->
+        <g class="mon-crest" style="stroke: var(--line)" stroke-width="2.5">
+          <rect x="61" y="28" width="7" height="44" fill="#c6f000" vector-effect="non-scaling-stroke" style="--h:.46;--t:780ms;--d:0ms"/>
+          <rect x="71" y="28" width="7" height="44" fill="#12e0e8" vector-effect="non-scaling-stroke" style="--h:.8;--t:1180ms;--d:-320ms"/>
+          <rect x="81" y="28" width="7" height="44" fill="#ff2e88" vector-effect="non-scaling-stroke" style="--h:.58;--t:900ms;--d:-540ms"/>
+          <rect x="91" y="28" width="7" height="44" fill="#7d3cff" vector-effect="non-scaling-stroke" style="--h:1;--t:1320ms;--d:-160ms"/>
+          <rect x="101" y="28" width="7" height="44" fill="#ff6a00" vector-effect="non-scaling-stroke" style="--h:.5;--t:1000ms;--d:-700ms"/>
         </g>
 
-        <!-- body -->
-        <path d="M85 64c28 0 49 20 49 47 0 28-22 45-49 45s-49-17-49-45c0-27 21-47 49-47z" fill="url(#monBody)"/>
-        <ellipse cx="85" cy="137" rx="26" ry="15" fill="url(#monBelly)"/>
-        <ellipse cx="63" cy="85" rx="13" ry="7.5" fill="#ffffff" opacity=".3" transform="rotate(-24 63 85)"/>
+        <!-- flat fills with a hard ink line — cel-shaded, no gradients -->
+        <g style="stroke: var(--on-can)" stroke-width="3" stroke-linejoin="round">
+          <!-- fins, feet and tail sit behind the body so the joins never show -->
+          <path d="M39 99c-14-11-24-4-21 7 3 10 15 8 21 1z" fill="#e04e00"/>
+          <path d="M131 99c14-11 24-4 21 7-3 10-15 8-21 1z" fill="#e04e00"/>
+          <ellipse cx="66" cy="157" rx="12" ry="7" fill="#d94a00"/>
+          <ellipse cx="104" cy="157" rx="12" ry="7" fill="#d94a00"/>
+          <g class="mon-tail">
+            <path d="M116 150c22 10 46 2 47-17 0-11-11-15-15-7 7 5 4 14-7 16-8 1-18 3-25 8z"
+                  style="fill:none;stroke:var(--line);stroke-width:9;stroke-linejoin:round"/>
+            <path d="M116 150c22 10 46 2 47-17 0-11-11-15-15-7 7 5 4 14-7 16-8 1-18 3-25 8z" fill="#ff2e88"/>
+          </g>
+
+          <!-- body -->
+          <path d="M85 64c28 0 49 20 49 47 0 28-22 45-49 45s-49-17-49-45c0-27 21-47 49-47z" fill="#ff6a00"/>
+        </g>
+
+        <!-- the cel shadow: one hard terminator, light from the upper left -->
+        <g clip-path="url(#monBodyClip)">
+          <path d="M28 160 L142 92 L146 178 L28 178 Z" fill="#d14700"/>
+        </g>
+
+        <ellipse cx="85" cy="137" rx="26" ry="15" fill="#ffe9c9" style="stroke: var(--on-can)" stroke-width="3"/>
+        <ellipse cx="63" cy="85" rx="13" ry="7.5" fill="#ffffff" opacity=".26" transform="rotate(-24 63 85)"/>
 
         <!-- face -->
-        <ellipse class="mon-cheek" cx="50" cy="119" rx="8" ry="5.4" fill="#ff5f8a" opacity=".72"/>
-        <ellipse class="mon-cheek" cx="120" cy="119" rx="8" ry="5.4" fill="#ff5f8a" opacity=".72"/>
+        <ellipse class="mon-cheek" cx="50" cy="119" rx="8" ry="5.4" fill="#ff2e88" opacity=".8"/>
+        <ellipse class="mon-cheek" cx="120" cy="119" rx="8" ry="5.4" fill="#ff2e88" opacity=".8"/>
         <g class="mon-eyes">
-          <ellipse cx="68" cy="104" rx="8.4" ry="10" fill="#3a1c10"/>
-          <ellipse cx="102" cy="104" rx="8.4" ry="10" fill="#3a1c10"/>
+          <ellipse cx="68" cy="104" rx="8.4" ry="10" fill="#100c14"/>
+          <ellipse cx="102" cy="104" rx="8.4" ry="10" fill="#100c14"/>
           <circle cx="65" cy="100" r="3.1" fill="#ffffff"/>
           <circle cx="99" cy="100" r="3.1" fill="#ffffff"/>
           <circle cx="71.5" cy="108.5" r="1.7" fill="#ffffff" opacity=".65"/>
           <circle cx="105.5" cy="108.5" r="1.7" fill="#ffffff" opacity=".65"/>
         </g>
-        <path d="M77 117c4 5.4 12 5.4 16 0" stroke="#3a1c10" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M77 117c4 5.4 12 5.4 16 0" stroke="#100c14" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
       </g>
     </svg>
   </section>
-
   <section class="side" aria-labelledby="a-side">
-    <h2 class="side-label" id="a-side">A-side</h2>
+    <h2 class="side-label" id="a-side"><span>A-side</span></h2>
     <div class="aside-grid">
 
       <a class="feature feature--lead reveal" style="--i:0" href="https://kranmal.github.io/Vibe_Portfolio_Projects/dunder-mifflin-dash/">
@@ -495,7 +604,7 @@ footer a:hover { color: var(--accent); border-color: var(--accent-edge); }
         </span>
       </a>
 
-      <a class="feature reveal" style="--i:1" href="https://kranmal.github.io/Vibe_Portfolio_Projects/cot-dashboard/">
+      <a class="feature feature--sec reveal" style="--i:1" href="https://kranmal.github.io/Vibe_Portfolio_Projects/cot-dashboard/">
         <span class="tag">Markets</span>
         <h3>COT Crowding Dashboard</h3>
         <p>Weekly CFTC positioning extremes across 45 major futures markets, updated live in the browser.</p>
@@ -516,7 +625,7 @@ footer a:hover { color: var(--accent); border-color: var(--accent-edge); }
   </section>
 
   <section class="side" aria-labelledby="deep-cuts">
-    <h2 class="side-label" id="deep-cuts">Deep cuts</h2>
+    <h2 class="side-label" id="deep-cuts"><span>Deep cuts</span></h2>
     <ol class="tracks">
 
       <li class="reveal" style="--i:0"><a class="track" href="https://kranmal.github.io/Vibe_Portfolio_Projects/crypto-portfolio/">
@@ -655,7 +764,7 @@ footer a:hover { color: var(--accent); border-color: var(--accent-edge); }
   </main>
 
   <footer>
-    <span>Built and hosted on GitHub Pages.</span>
+    <span class="scrawl">Built and hosted on GitHub Pages.</span>
     <a href="privacy.html">Privacy policy</a>
   </footer>
 </div>
