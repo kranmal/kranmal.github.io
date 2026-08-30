@@ -774,14 +774,15 @@ footer a:hover { background: var(--can-acid); transform: rotate(1.6deg) translat
   var root = document.documentElement;
 
   /* theme */
-  var saved = localStorage.getItem("kranmal-theme");
+  var saved = null;
+  try { saved = localStorage.getItem("kranmal-theme"); } catch (e) {}
   if (saved) root.setAttribute("data-theme", saved);
   document.getElementById("theme-toggle").addEventListener("click", function () {
     var explicit = root.getAttribute("data-theme");
     var effectiveDark = explicit ? explicit === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
     var next = effectiveDark ? "light" : "dark";
     root.setAttribute("data-theme", next);
-    localStorage.setItem("kranmal-theme", next);
+    try { localStorage.setItem("kranmal-theme", next); } catch (e) {}
   });
 
   var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
