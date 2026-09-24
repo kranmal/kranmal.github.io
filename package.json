@@ -2,8 +2,10 @@
   "name": "kranmal.github.io",
   "private": true,
   "scripts": {
-    "test:a11y": "playwright test",
-    "test:a11y:prod": "BASE_URL=https://kranmal.github.io playwright test"
+    "test": "playwright test",
+    "test:prod": "BASE_URL=https://kranmal.github.io playwright test",
+    "test:a11y": "playwright test tests/a11y.spec.ts",
+    "test:a11y:prod": "BASE_URL=https://kranmal.github.io playwright test tests/a11y.spec.ts"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",

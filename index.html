@@ -9,6 +9,7 @@
 <meta name="google-site-verification" content="d7mI30c7mJv_UgitNHbB5VMrj8TEely5nG0NIGx3f_I" />
 <meta name="theme-color" content="#efe8dc" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0b0910" media="(prefers-color-scheme: dark)">
+<script src="theme.js"></script>
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://kranmal.github.io/">
 <meta property="og:title" content="Ketan Ranmal — Projects">
@@ -58,7 +59,8 @@
     { "@type": "ListItem", "position": 13, "name": "LLM API Cost Calculator", "description": "Compare Claude, GPT, and Gemini API costs side by side — per request and per month.", "url": "https://kranmal.github.io/Vibe_Portfolio_Projects/llm-cost-calculator/" },
     { "@type": "ListItem", "position": 14, "name": "UK Precious Metal Prices", "description": "Live gold, silver and platinum spot prices in GBP, plus scrap melt value by purity.", "url": "https://kranmal.github.io/Vibe_Portfolio_Projects/metal-prices-uk/" },
     { "@type": "ListItem", "position": 15, "name": "Market Pulse", "description": "Live stock, crypto, and metals news aggregated from dozens of publishers worldwide, refreshed every 30 minutes.", "url": "https://kranmal.github.io/market-pulse/" },
-    { "@type": "ListItem", "position": 16, "name": "Footlore", "description": "What's worth looking at, right where you're standing — sights, food and shops nearby, and a walk that strings them together.", "url": "https://kranmal.github.io/footlore/" }
+    { "@type": "ListItem", "position": 16, "name": "Footlore", "description": "What's worth looking at, right where you're standing — sights, food and shops nearby, and a walk that strings them together.", "url": "https://kranmal.github.io/footlore/" },
+    { "@type": "ListItem", "position": 17, "name": "Station Y2", "description": "A text adventure down Will Crowther's 1976 cave — his map and his magic words, rewritten from scratch, with the dark drawn around you as you go.", "url": "https://kranmal.github.io/Vibe_Portfolio_Projects/station-y2/" }
   ]
 }
 </script>
@@ -482,7 +484,7 @@ footer a:hover { background: var(--can-acid); transform: rotate(1.6deg) translat
   }
   .eq i { transform: scaleY(0.62); }
   .track-idx .eq { opacity: 0 !important; }
-  .track:hover .track-idx::before { opacity: 1 !important; }
+  .track:hover .track-idx::before, .track:focus-visible .track-idx::before { opacity: 1 !important; }
   .mon-crest rect { transform: scaleY(var(--h, .6)); }
   .mon-note { opacity: 0 !important; }
 }
@@ -510,7 +512,7 @@ footer a:hover { background: var(--can-acid); transform: rotate(1.6deg) translat
   <main>
   <section class="hero">
     <div class="hero-copy">
-      <p class="kicker"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span> now playing · <span id="count">11</span> side projects</p>
+      <p class="kicker"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span> now playing · <span id="count">17</span> side projects</p>
       <h1>Small things, built on <em class="vibe">vibes</em>.</h1>
       <p class="lede">Self-contained web tools — no backend, no build step, nothing to install. Open one and it just runs.</p>
     </div>
@@ -799,22 +801,11 @@ footer a:hover { background: var(--can-acid); transform: rotate(1.6deg) translat
 <script>
 (function () {
   var root = document.documentElement;
-
-  /* theme */
-  var saved = null;
-  try { saved = localStorage.getItem("kranmal-theme"); } catch (e) {}
-  if (saved) root.setAttribute("data-theme", saved);
-  document.getElementById("theme-toggle").addEventListener("click", function () {
-    var explicit = root.getAttribute("data-theme");
-    var effectiveDark = explicit ? explicit === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
-    var next = effectiveDark ? "light" : "dark";
-    root.setAttribute("data-theme", next);
-    try { localStorage.setItem("kranmal-theme", next); } catch (e) {}
-  });
-
   var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* keep the count honest when a project is added, so the copy can't go stale */
+  /* keep the count honest when a project is added, so the copy can't go stale
+     (the static number is what no-JS visitors and crawlers see; the content
+     test checks it too) */
   var n = document.querySelectorAll(".feature, .track").length;
   if (n) document.getElementById("count").textContent = n;
 
