@@ -4,8 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy Policy — kranmal.github.io</title>
-<meta name="description" content="Privacy policy for kranmal.github.io — what data the projects on this site collect, how analytics and ads work, and how to opt out.">
+<meta name="description" content="Privacy policy for kranmal.github.io — what data the projects on this site collect, and how the analytics work.">
 <link rel="canonical" href="https://kranmal.github.io/privacy.html">
+<meta name="theme-color" content="#f9f9f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d0d0d" media="(prefers-color-scheme: dark)">
+<script src="theme.js"></script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='3' fill='%23100c14'/%3E%3Crect x='6' y='13' width='4' height='7' fill='%23c6f000'/%3E%3Crect x='12' y='7' width='4' height='19' fill='%2312e0e8'/%3E%3Crect x='18' y='10' width='4' height='13' fill='%23ff2e88'/%3E%3Crect x='24' y='15' width='3' height='5' fill='%23ff6a00'/%3E%3C/svg%3E">
 <style>
 :root {
   color-scheme: light;
@@ -55,15 +59,15 @@ p, li { color: var(--text-2); }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main class="wrap">
   <div class="head-row">
     <div>
-      <a class="back" href="index.html">← Back to projects</a>
+      <a class="back" href="/">← Back to projects</a>
       <h1>Privacy Policy</h1>
     </div>
     <button class="btn-icon" id="theme-toggle" title="Toggle light/dark theme" aria-label="Toggle theme">◐</button>
   </div>
-  <p class="muted">Covers all projects under kranmal.github.io · Last updated 2026-09-10</p>
+  <p class="muted">Covers all projects under kranmal.github.io · Last updated 2026-09-24</p>
 
   <h2>What these sites are</h2>
   <p>Free static pages — small tools with no user accounts, no sign-up,
@@ -102,26 +106,13 @@ p, li { color: var(--text-2); }
   stores what you look up.</p>
 
   <h2>Children's privacy</h2>
-  <p>These are financial-data tools not directed at children, and do not
+  <p>These are small tools and games not directed at children, and do not
   knowingly collect data from anyone under 13 (or the relevant minimum
   age in your jurisdiction).</p>
 
   <h2>Changes to this policy</h2>
   <p>If these sites start collecting data they don't today, this policy
   will be updated accordingly.</p>
-</div>
-<script>
-(function initTheme() {
-  var saved = localStorage.getItem("kranmal-theme");
-  if (saved) document.documentElement.setAttribute("data-theme", saved);
-  document.getElementById("theme-toggle").addEventListener("click", function () {
-    var explicit = document.documentElement.getAttribute("data-theme");
-    var effectiveDark = explicit ? explicit === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
-    var next = effectiveDark ? "light" : "dark";
-    document.documentElement.setAttribute("data-theme", next);
-    localStorage.setItem("kranmal-theme", next);
-  });
-})();
-</script>
+</main>
 </body>
 </html>
