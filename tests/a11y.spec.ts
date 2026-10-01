@@ -1,4 +1,4 @@
-import { test, expect } from './axe-test';
+import { test, expect, setTheme } from './axe-test';
 import AxeBuilder from '@axe-core/playwright';
 import type { Page, TestInfo } from '@playwright/test';
 // Cards and tracklist rows fade in via IntersectionObserver
@@ -62,13 +62,7 @@ test.describe('kranmal.github.io homepage', () => {
 
   test('dark theme should not have automatically detectable accessibility violations', async ({ page, makeAxeBuilder }, testInfo) => {
     await settle(page);
-    // Toggle until the document is explicitly in dark mode, whichever way it started.
-    const toggle = page.getByRole('button', { name: 'Toggle theme' });
-    for (let i = 0; i < 2; i++) {
-      if ((await page.locator('html').getAttribute('data-theme')) === 'dark') break;
-      await toggle.click();
-    }
-    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+    await setTheme(page, 'dark');
     const results = await makeAxeBuilder().analyze();
     await attach(testInfo, 'axe-dark-scan.json', results);
     expect(results.violations).toEqual([]);
@@ -76,12 +70,7 @@ test.describe('kranmal.github.io homepage', () => {
 
   test('light theme should not have automatically detectable accessibility violations', async ({ page, makeAxeBuilder }, testInfo) => {
     await settle(page);
-    const toggle = page.getByRole('button', { name: 'Toggle theme' });
-    for (let i = 0; i < 2; i++) {
-      if ((await page.locator('html').getAttribute('data-theme')) === 'light') break;
-      await toggle.click();
-    }
-    await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+    await setTheme(page, 'light');
     const results = await makeAxeBuilder().analyze();
     await attach(testInfo, 'axe-light-scan.json', results);
     expect(results.violations).toEqual([]);
@@ -98,12 +87,7 @@ test.describe('privacy page', () => {
 
   test('dark theme should not have automatically detectable WCAG A or AA violations', async ({ page, makeAxeBuilder }, testInfo) => {
     await page.goto('/privacy.html');
-    const toggle = page.getByRole('button', { name: /theme/i });
-    for (let i = 0; i < 2; i++) {
-      if ((await page.locator('html').getAttribute('data-theme')) === 'dark') break;
-      await toggle.click();
-    }
-    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+    await setTheme(page, 'dark');
     const results = await makeAxeBuilder().analyze();
     await attach(testInfo, 'axe-privacy-dark-scan.json', results);
     expect(results.violations).toEqual([]);

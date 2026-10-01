@@ -1,4 +1,4 @@
-import { test as base } from '@playwright/test';
+import { test as base, expect, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
 type AxeFixture = {
@@ -19,4 +19,16 @@ export const test = base.extend<AxeFixture>({
   },
 });
 
-export { expect } from '@playwright/test';
+export { expect };
+
+/* Click the theme toggle until the document is explicitly in `theme`,
+   whichever way it started (the first click may only leave the OS theme). */
+export async function setTheme(page: Page, theme: 'light' | 'dark') {
+  const html = page.locator('html');
+  const toggle = page.getByRole('button', { name: 'Toggle theme' });
+  for (let i = 0; i < 2; i++) {
+    if ((await html.getAttribute('data-theme')) === theme) break;
+    await toggle.click();
+  }
+  await expect(html).toHaveAttribute('data-theme', theme);
+}
