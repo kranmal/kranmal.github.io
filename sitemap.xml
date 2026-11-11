@@ -139,6 +139,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://kranmal.github.io/inkwell/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://kranmal.github.io/privacy.html</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>yearly</changefreq>
