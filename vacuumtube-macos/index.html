@@ -41,7 +41,7 @@ footer{color:var(--mut);font-size:.9rem;margin-top:32px}
 <section class="card">
 <div class="btns">
 <a class="btn p" href="https://github.com/kranmal/kranmal.github.io/releases/download/vacuumtube-2.0.2-mac-arm64/VacuumTube-arm64.zip">Download (.zip, 112 MB)</a>
-<a class="btn" href="https://github.com/kranmal/kranmal.github.io/releases/download/vacuumtube-2.0.2-mac-arm64/VacuumTube-arm64.dmg">Download (.dmg, 420 MB, experimental)</a>
+<a class="btn" href="https://github.com/kranmal/kranmal.github.io/releases/download/vacuumtube-2.0.2-mac-arm64/VacuumTube-arm64.dmg">Download (.dmg, 114 MB)</a>
 <a class="btn" href="https://github.com/shy1132/VacuumTube">VacuumTube on GitHub</a>
 </div>
 <h3>Install (use the .zip)</h3>
@@ -60,15 +60,11 @@ footer{color:var(--mut);font-size:.9rem;margin-top:32px}
 <ul>
 <li>Then run <code>xattr -cr</code> on the path that exists. In Terminal, type <code>xattr -cr </code> with a trailing space and drag the app from Finder into the window to fill in the path.</li>
 <li><strong>Still blocked</strong>: right-click the app, choose Open, then confirm. Or allow it in System Settings, Privacy &amp; Security.</li>
-<li><strong>The .dmg flashes and nothing happens</strong>: the .dmg is a raw HFS+ image built on Linux and untested on a Mac, and it may fail to mount. Use the .zip. To see why it failed:</li>
+<li><strong>The .dmg will not open</strong>: the .zip is the same app, so use that. To see the error:</li>
 </ul>
 <div class="cmd"><code tabindex="0">hdiutil attach -verbose ~/Downloads/VacuumTube-arm64.dmg</code><button type="button" data-copy>Copy</button></div>
 <ul>
-<li>If it does attach, you can convert it to a normal compressed dmg:</li>
-</ul>
-<div class="cmd"><code tabindex="0">hdiutil convert ~/Downloads/VacuumTube-arm64.dmg -format UDZO -o ~/Downloads/VacuumTube-fixed.dmg</code><button type="button" data-copy>Copy</button></div>
-<ul>
-<li>A dmg only mounts a disk and installs nothing: drag the app from it to Applications, then run the <code>xattr</code> step above on the copy in Applications (the mounted dmg is read-only).</li>
+<li>The .dmg was built on Linux (not by macOS) and carries no checksum; it mounted on an Apple silicon Mac. A dmg only mounts a disk and installs nothing: drag the app from it to Applications, then run the <code>xattr</code> step above on the copy in Applications (the mounted dmg is read-only).</li>
 </ul>
 <h3>Build the dmg yourself on a Mac</h3>
 <div class="cmd"><code tabindex="0">git clone https://github.com/shy1132/VacuumTube &amp;&amp; cd VacuumTube &amp;&amp; npm ci &amp;&amp; npx electron-builder --mac dmg --arm64</code><button type="button" data-copy>Copy</button></div>
