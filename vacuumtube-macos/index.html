@@ -18,7 +18,7 @@ h1{font-size:2rem;margin:0 0 4px}h2{margin:0 0 4px;font-size:1.4rem}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin:0 0 24px}
 .card img{display:block;max-width:100%;height:auto;border-radius:10px;border:1px solid var(--line);margin:14px 0}
 .card img{max-height:420px;width:auto}
-ul{padding-left:20px;margin:8px 0 14px}
+ul,ol{padding-left:20px;margin:8px 0 14px}
 .btns{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
 a.btn{display:inline-block;padding:9px 16px;border-radius:8px;text-decoration:none;font-weight:600;border:1px solid var(--line);color:var(--fg)}
 a.btn.p{background:var(--acc);border-color:var(--acc);color:#fff}
@@ -39,14 +39,39 @@ footer{color:var(--mut);font-size:.9rem;margin-top:32px}
 <p class="sub">YouTube TV on your Mac, as a desktop app. Apple silicon build.</p>
 <div class="notice" role="note">Unofficial and unsigned. This is a build of <a href="https://github.com/shy1132/VacuumTube">VacuumTube</a> 2.0.2 by shy1132 (MIT), cross-built on Linux, so macOS Gatekeeper blocks it until you clear the quarantine flag. Apple silicon (arm64) only. I have not been able to run it on a Mac myself.</div>
 <section class="card">
-<ul><li>Download the .zip, unzip it and move VacuumTube.app to Applications</li><li>The .dmg is a raw read-only image built on Linux and untested on a Mac; if it will not mount, use the .zip</li><li>Not notarized, so run the command below once after copying the app over</li></ul>
 <div class="btns">
 <a class="btn p" href="https://github.com/kranmal/kranmal.github.io/releases/download/vacuumtube-2.0.2-mac-arm64/VacuumTube-arm64.zip">Download (.zip, 112 MB)</a>
-<a class="btn" href="https://github.com/kranmal/kranmal.github.io/releases/download/vacuumtube-2.0.2-mac-arm64/VacuumTube-arm64.dmg">Download (.dmg, 420 MB)</a>
+<a class="btn" href="https://github.com/kranmal/kranmal.github.io/releases/download/vacuumtube-2.0.2-mac-arm64/VacuumTube-arm64.dmg">Download (.dmg, 420 MB, experimental)</a>
 <a class="btn" href="https://github.com/shy1132/VacuumTube">VacuumTube on GitHub</a>
 </div>
-<h3>After copying to Applications</h3>
+<h3>Install (use the .zip)</h3>
+<ol>
+<li>Double-click <code>VacuumTube-arm64.zip</code> in Downloads. It unzips to <code>VacuumTube.app</code>.</li>
+<li>Drag <code>VacuumTube.app</code> to Applications.</li>
+<li>In Terminal, clear the quarantine flag (the app is not notarized, so macOS blocks it otherwise):</li>
+</ol>
 <div class="cmd"><code tabindex="0">xattr -cr /Applications/VacuumTube.app</code><button type="button" data-copy>Copy</button></div>
+<ol start="4"><li>Open VacuumTube from Applications.</li></ol>
+<h3>Troubleshooting</h3>
+<ul>
+<li><strong>"xattr: No such file"</strong>: <code>xattr</code> is built into macOS; the error means the app is not at that path. Find it:</li>
+</ul>
+<div class="cmd"><code tabindex="0">ls -d /Applications/VacuumTube.app ~/Downloads/VacuumTube.app ~/Downloads/*/VacuumTube.app</code><button type="button" data-copy>Copy</button></div>
+<ul>
+<li>Then run <code>xattr -cr</code> on the path that exists. In Terminal, type <code>xattr -cr </code> with a trailing space and drag the app from Finder into the window to fill in the path.</li>
+<li><strong>Still blocked</strong>: right-click the app, choose Open, then confirm. Or allow it in System Settings, Privacy &amp; Security.</li>
+<li><strong>The .dmg flashes and nothing happens</strong>: the .dmg is a raw HFS+ image built on Linux and untested on a Mac, and it may fail to mount. Use the .zip. To see why it failed:</li>
+</ul>
+<div class="cmd"><code tabindex="0">hdiutil attach -verbose ~/Downloads/VacuumTube-arm64.dmg</code><button type="button" data-copy>Copy</button></div>
+<ul>
+<li>If it does attach, you can convert it to a normal compressed dmg:</li>
+</ul>
+<div class="cmd"><code tabindex="0">hdiutil convert ~/Downloads/VacuumTube-arm64.dmg -format UDZO -o ~/Downloads/VacuumTube-fixed.dmg</code><button type="button" data-copy>Copy</button></div>
+<ul>
+<li>A dmg only mounts a disk and installs nothing: drag the app from it to Applications, then run the <code>xattr</code> step above on the copy in Applications (the mounted dmg is read-only).</li>
+</ul>
+<h3>Build the dmg yourself on a Mac</h3>
+<div class="cmd"><code tabindex="0">git clone https://github.com/shy1132/VacuumTube &amp;&amp; cd VacuumTube &amp;&amp; npm ci &amp;&amp; npx electron-builder --mac dmg --arm64</code><button type="button" data-copy>Copy</button></div>
 </section>
 <footer>All credit for VacuumTube goes to shy1132; this page only hosts a macOS build. MIT licensed. See also: <a href="../linux-powermon/">Linux Powermon</a>.</footer>
 </main>
