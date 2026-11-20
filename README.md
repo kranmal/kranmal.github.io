@@ -1,7 +1,7 @@
 # kranmal.github.io
 
-Root GitHub Pages site for this account: a single hand-written hub page
-linking out to the projects, most of which live in
+Root GitHub Pages site for this account, branded as **Ranmal Labs**: a single
+hand-written hub page linking out to the projects, most of which live in
 [Vibe_Portfolio_Projects](https://github.com/kranmal/Vibe_Portfolio_Projects).
 No build step: what's in the repo is what's served.
 
@@ -10,14 +10,15 @@ No build step: what's in the repo is what's served.
 | `index.html` | The hub. Styles and page script are inline. |
 | `privacy.html` | Privacy policy covering every project on the domain. |
 | `theme.js` | Shared light/dark toggle, loaded in `<head>` by both pages. |
-| `sitemap.xml`, `robots.txt`, `og-image.png` | Search and social metadata. |
+| `assets/` | Ranmal Labs logo (`logo.svg`) and favicon (`favicon.svg`). |
+| `sitemap.xml`, `robots.txt`, `og-image.png` | Search and social metadata (`og-image.png` is 1200x630). |
 
 ## Adding a project
 
 A new project touches four places, and `tests/content.spec.ts` fails
 until they agree:
 
-1. a `.feature` card (A-side) or a `.track` row (Deep cuts) in `index.html`
+1. a `.feature` card (featured tools) or a `.track` row ("More from the lab") in `index.html`
 2. a matching entry, in the same order, in the `ItemList` JSON-LD
 3. the `<span id="count">` number in the kicker (the script corrects it at
    runtime, but crawlers and no-JS visitors see the written one)
