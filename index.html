@@ -240,6 +240,34 @@ section { scroll-margin-top: 16px; }
   .row .tape { margin-left: 10px; }
 }
 
+/* "what's live today" is the working end of the page: a full-bleed litmus-blue band */
+#tools {
+  --fg: var(--on-litmus); --fg-2: color-mix(in srgb, var(--on-litmus) 86%, var(--litmus)); --rule: color-mix(in srgb, var(--on-litmus) 38%, var(--litmus));
+  background: var(--litmus); color: var(--fg);
+  border-block: 4px solid var(--ink);
+  background-image: radial-gradient(color-mix(in srgb, var(--on-litmus) 16%, transparent) 1.2px, transparent 1.4px);
+  background-size: 22px 22px;
+}
+#tools .sec-note { color: var(--fg-2); }
+#tools h2 { display: flex; align-items: center; gap: .3em; }
+#tools h2::before {
+  content: ""; flex: none; width: .36em; height: .36em; border-radius: 50%;
+  background: var(--indicator); box-shadow: 0 0 0 3px var(--litmus), 0 0 0 6px var(--indicator);
+  animation: live-pulse 2s ease-in-out infinite;
+}
+@keyframes live-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+#tools .index { border-top: 2px solid var(--fg); }
+#tools .index li { border-bottom-color: var(--rule); }
+#tools .row { color: var(--fg); }
+#tools .row-desc { color: var(--fg-2); }
+#tools .row-go { font-size: 1.05rem; }
+#tools .row .tape { background: var(--indicator); color: var(--on-indicator); box-shadow: none; }
+#tools .row:hover, #tools .row:focus-visible { background: var(--indicator); color: var(--on-indicator); box-shadow: none; }
+#tools .row:hover .row-desc, #tools .row:focus-visible .row-desc { color: var(--on-indicator); }
+#tools .row:hover .tape, #tools .row:focus-visible .tape { background: var(--on-indicator); color: var(--indicator); }
+#tools .row:focus-visible { outline: 3px solid var(--fg); outline-offset: -3px; }
+@media (prefers-reduced-motion: reduce) { #tools h2::before { animation: none; } }
+
 /* everything else: a tool wall */
 .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; padding: 0; list-style: none; }
 /* each type has its own colour; the chip and the top rule of its tools share it */
