@@ -7,8 +7,8 @@
 <meta name="description" content="Ranmal Labs is an independent studio building small, free web tools that do one job well. No sign-up, nothing to install: open one and it just runs.">
 <link rel="canonical" href="https://kranmal.github.io/">
 <meta name="google-site-verification" content="d7mI30c7mJv_UgitNHbB5VMrj8TEely5nG0NIGx3f_I" />
-<meta name="theme-color" content="#e6ebe7" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0b1a17" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f3f5f8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0c1118" media="(prefers-color-scheme: dark)">
 <script src="theme.js"></script>
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://kranmal.github.io/">
@@ -94,26 +94,29 @@
 </script>
 
 <style>
-/* tokens: lab bench — glassware green, litmus blue, indicator yellow */
+/* tokens: slate and brass — cool neutral ground, one blue, a navy band, a brass signal */
 :root {
   color-scheme: light;
-  --bench: #e6ebe7; --paper: #f6f8f5; --ink: #0e2b26; --ink-2: #3d554f; --line: rgba(14,43,38,.22);
-  --litmus: #2a37e8; --on-litmus: #ffffff; --indicator: #f2d13b; --on-indicator: #0e2b26;
-  --tape-bg: #0e2b26; --tape-fg: #f6f8f5; --hole: rgba(14,43,38,.16);
+  --bench: #f3f5f8; --paper: #ffffff; --ink: #101828; --ink-2: #455468; --line: rgba(16,24,40,.16);
+  --litmus: #2a54c9; --on-litmus: #ffffff; --indicator: #e3ab2f; --on-indicator: #101828;
+  --band: #14233d; --on-band: #f2f5fa;
+  --tape-bg: #101828; --tape-fg: #f3f5f8; --hole: rgba(16,24,40,.14);
 }
 @media (prefers-color-scheme: dark) {
   :root:where(:not([data-theme="light"])) {
     color-scheme: dark;
-    --bench: #0b1a17; --paper: #10231f; --ink: #e8eee9; --ink-2: #a3b7b0; --line: rgba(232,238,233,.22);
-    --litmus: #8b94ff; --on-litmus: #0b1a17; --indicator: #f2d13b; --on-indicator: #0b1a17;
-    --tape-bg: #e3e8e4; --tape-fg: #0e2b26; --hole: rgba(232,238,233,.12);
+    --bench: #0c1118; --paper: #131a23; --ink: #e8edf4; --ink-2: #9aa8ba; --line: rgba(232,237,244,.18);
+    --litmus: #8fb0ff; --on-litmus: #0c1118; --indicator: #eab94f; --on-indicator: #0c1118;
+    --band: #1a2e52; --on-band: #f0f4fa;
+    --tape-bg: #e3e9f1; --tape-fg: #101828; --hole: rgba(232,237,244,.12);
   }
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --bench: #0b1a17; --paper: #10231f; --ink: #e8eee9; --ink-2: #a3b7b0; --line: rgba(232,238,233,.22);
-  --litmus: #8b94ff; --on-litmus: #0b1a17; --indicator: #f2d13b; --on-indicator: #0b1a17;
-  --tape-bg: #e3e8e4; --tape-fg: #0e2b26; --hole: rgba(232,238,233,.12);
+  --bench: #0c1118; --paper: #131a23; --ink: #e8edf4; --ink-2: #9aa8ba; --line: rgba(232,237,244,.18);
+  --litmus: #8fb0ff; --on-litmus: #0c1118; --indicator: #eab94f; --on-indicator: #0c1118;
+  --band: #1a2e52; --on-band: #f0f4fa;
+  --tape-bg: #e3e9f1; --tape-fg: #101828; --hole: rgba(232,237,244,.12);
 }
 
 * { box-sizing: border-box; }
@@ -240,19 +243,19 @@ section { scroll-margin-top: 16px; }
   .row .tape { margin-left: 10px; }
 }
 
-/* "what's live today" is the working end of the page: a full-bleed litmus-blue band */
+/* "what's live today" is the working end of the page: a full-bleed navy band */
 #tools {
-  --fg: var(--on-litmus); --fg-2: color-mix(in srgb, var(--on-litmus) 86%, var(--litmus)); --rule: color-mix(in srgb, var(--on-litmus) 38%, var(--litmus));
-  background: var(--litmus); color: var(--fg);
-  border-block: 4px solid var(--ink);
-  background-image: radial-gradient(color-mix(in srgb, var(--on-litmus) 16%, transparent) 1.2px, transparent 1.4px);
+  --fg: var(--on-band); --fg-2: color-mix(in srgb, var(--on-band) 80%, var(--band)); --rule: color-mix(in srgb, var(--on-band) 26%, var(--band));
+  background: var(--band); color: var(--fg);
+  border-block: 1px solid var(--line);
+  background-image: radial-gradient(color-mix(in srgb, var(--on-band) 9%, transparent) 1.2px, transparent 1.4px);
   background-size: 22px 22px;
 }
 #tools .sec-note { color: var(--fg-2); }
 #tools h2 { display: flex; align-items: center; gap: .3em; }
 #tools h2::before {
   content: ""; flex: none; width: .36em; height: .36em; border-radius: 50%;
-  background: var(--indicator); box-shadow: 0 0 0 3px var(--litmus), 0 0 0 6px var(--indicator);
+  background: var(--indicator); box-shadow: 0 0 0 3px var(--band), 0 0 0 5px var(--indicator);
   animation: live-pulse 2s ease-in-out infinite;
 }
 @keyframes live-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
@@ -287,13 +290,18 @@ section { scroll-margin-top: 16px; }
   border: 2px solid var(--c, var(--line)); border-radius: 999px; padding: 10px 16px; cursor: pointer; min-height: 40px;
 }
 .chip:hover { border-color: var(--ink); }
-.chip[aria-pressed="true"] { background: var(--c, var(--ink)); color: var(--on-chip, #0e2b26); border-color: var(--c, var(--ink)); font-weight: 600; }
+.chip[aria-pressed="true"] { background: var(--c, var(--ink)); color: var(--on-chip, #101828); border-color: var(--c, var(--ink)); font-weight: 600; }
 .chip[data-k="All"][aria-pressed="true"] { color: var(--bench); }
 .wall { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0 40px; margin: 0; padding: 0; list-style: none; }
 .tool { border-top: 4px solid var(--c, var(--line)); padding: 20px 0 26px; }
 .tool a { text-decoration: none; display: block; }
-.tool .tape { font-size: 1.05rem; transition: background .15s; }
-.tool a:hover .tape { background: var(--litmus); color: var(--on-litmus); }
+.tool .tape {
+  background: none; color: var(--ink); box-shadow: none; border-radius: 0; padding: 0;
+  font: 650 1.3rem/1.25 "Instrument Sans", sans-serif; letter-spacing: -.01em;
+  text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 5px; text-decoration-thickness: 2px;
+  transition: color .15s, text-decoration-color .15s;
+}
+.tool a:hover .tape { color: var(--litmus); text-decoration-color: currentColor; }
 .tool p { margin: 12px 0 0; color: var(--ink-2); font-size: 1rem; line-height: 1.5; }
 .tool small { display: block; margin-top: 10px; color: var(--ink-2); font-size: .9rem; }
 .empty { color: var(--ink-2); }
@@ -423,7 +431,7 @@ footer nav { display: flex; gap: 20px; }
     </div>
   </section>
 
-  <section class="sec" style="padding-top:0" aria-labelledby="more-h">
+  <section class="sec" aria-labelledby="more-h">
     <div class="wrap">
       <div class="sec-head">
         <h2 id="more-h">More from the lab</h2>
