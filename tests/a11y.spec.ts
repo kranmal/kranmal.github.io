@@ -48,14 +48,14 @@ test.describe('kranmal.github.io homepage', () => {
 
   test('header should not have automatically detectable accessibility violations', async ({ page, makeAxeBuilder }, testInfo) => {
     await settle(page);
-    const results = await makeAxeBuilder().include('header.topbar').analyze();
+    const results = await makeAxeBuilder().include('header.top').analyze();
     await attach(testInfo, 'axe-header-scan.json', results);
     expect(results.violations).toEqual([]);
   });
 
   test('project list should not have automatically detectable accessibility violations', async ({ page, makeAxeBuilder }, testInfo) => {
     await settle(page);
-    const results = await makeAxeBuilder().include('section.side').analyze();
+    const results = await makeAxeBuilder().include('section#tools, section[aria-labelledby="more-h"]').analyze();
     await attach(testInfo, 'axe-projects-scan.json', results);
     expect(results.violations).toEqual([]);
   });

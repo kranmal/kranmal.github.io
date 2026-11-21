@@ -7,8 +7,8 @@
 <meta name="description" content="Ranmal Labs is an independent studio building small, free web tools that do one job well. No sign-up, nothing to install: open one and it just runs.">
 <link rel="canonical" href="https://kranmal.github.io/">
 <meta name="google-site-verification" content="d7mI30c7mJv_UgitNHbB5VMrj8TEely5nG0NIGx3f_I" />
-<meta name="theme-color" content="#f6f8fc" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#070b16" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#e6ebe7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b1a17" media="(prefers-color-scheme: dark)">
 <script src="theme.js"></script>
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://kranmal.github.io/">
@@ -27,7 +27,7 @@
 <link rel="apple-touch-icon" href="assets/logo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <script data-goatcounter="https://kranmal.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 <script type="application/ld+json">
@@ -92,711 +92,391 @@
   ]
 }
 </script>
+
 <style>
-/* ---------- tokens: Ranmal Labs brand — deep navy, teal-to-sky glow, indigo accent ---------- */
+/* tokens: lab bench — glassware green, litmus blue, indicator yellow */
 :root {
   color-scheme: light;
-  --bg: #f6f8fc; --surface: #ffffff; --surface-2: #eef2f9;
-  --text-1: #0b1220; --text-2: #475268; --text-3: #5b667c;
-  --line: rgba(11,18,32,0.12);
-  --accent: #0f766e; --accent-2: #0369a1; --violet: #4f46e5;
-  --brand-a: #2dd4bf; --brand-b: #38bdf8; --brand-c: #818cf8;
-  --on-brand: #04121f;
-  --shadow: 0 10px 30px rgba(15,30,70,0.08);
-  --glow-a: rgba(45,212,191,0.16); --glow-b: rgba(129,140,248,0.14);
-  --grid: rgba(11,18,32,0.05);
+  --bench: #e6ebe7; --paper: #f6f8f5; --ink: #0e2b26; --ink-2: #3d554f; --line: rgba(14,43,38,.22);
+  --litmus: #2a37e8; --on-litmus: #ffffff; --indicator: #f2d13b; --on-indicator: #0e2b26;
+  --tape-bg: #0e2b26; --tape-fg: #f6f8f5; --hole: rgba(14,43,38,.16);
 }
 @media (prefers-color-scheme: dark) {
   :root:where(:not([data-theme="light"])) {
     color-scheme: dark;
-    --bg: #070b16; --surface: #0e1424; --surface-2: #131b30;
-    --text-1: #f1f5fb; --text-2: #aab6cc; --text-3: #8b98b3;
-    --line: rgba(148,180,255,0.15);
-    --accent: #2dd4bf; --accent-2: #38bdf8; --violet: #a5b4fc;
-    --shadow: 0 14px 40px rgba(0,0,0,0.45);
-    --glow-a: rgba(20,184,166,0.22); --glow-b: rgba(99,102,241,0.22);
-    --grid: rgba(148,180,255,0.07);
+    --bench: #0b1a17; --paper: #10231f; --ink: #e8eee9; --ink-2: #a3b7b0; --line: rgba(232,238,233,.22);
+    --litmus: #8b94ff; --on-litmus: #0b1a17; --indicator: #f2d13b; --on-indicator: #0b1a17;
+    --tape-bg: #e3e8e4; --tape-fg: #0e2b26; --hole: rgba(232,238,233,.12);
   }
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --bg: #070b16; --surface: #0e1424; --surface-2: #131b30;
-  --text-1: #f1f5fb; --text-2: #aab6cc; --text-3: #8b98b3;
-  --line: rgba(148,180,255,0.15);
-  --accent: #2dd4bf; --accent-2: #38bdf8; --violet: #a5b4fc;
-  --shadow: 0 14px 40px rgba(0,0,0,0.45);
-  --glow-a: rgba(20,184,166,0.22); --glow-b: rgba(99,102,241,0.22);
-  --grid: rgba(148,180,255,0.07);
+  --bench: #0b1a17; --paper: #10231f; --ink: #e8eee9; --ink-2: #a3b7b0; --line: rgba(232,238,233,.22);
+  --litmus: #8b94ff; --on-litmus: #0b1a17; --indicator: #f2d13b; --on-indicator: #0b1a17;
+  --tape-bg: #e3e8e4; --tape-fg: #0e2b26; --hole: rgba(232,238,233,.12);
 }
 
-/* ---------- base ---------- */
 * { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 84px; }
+html { scroll-behavior: smooth; }
 body {
-  margin: 0; background: var(--bg); color: var(--text-1); overflow-x: hidden;
-  font: 400 16px/1.6 "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  margin: 0; background: var(--bench); color: var(--ink);
+  font: 400 1.0625rem/1.6 "Instrument Sans", system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
-a { color: inherit; text-decoration: none; }
-img { display: block; }
-h1, h2, h3, p, ul, dl, dd { margin: 0; }
-ul { padding: 0; list-style: none; }
-:where(a, button):focus-visible { outline: 2px solid var(--accent-2); outline-offset: 3px; border-radius: 6px; }
-::selection { background: var(--brand-a); color: var(--on-brand); }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--litmus); outline-offset: 3px; border-radius: 3px; }
+.wrap { width: min(1200px, 100% - 32px); margin-inline: auto; }
+@media (min-width: 720px) { .wrap { width: min(1200px, 100% - 64px); } }
 
-.shell { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
-.eyebrow {
-  font: 600 12px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
-}
-h2 { font-size: clamp(26px, 3.4vw, 34px); line-height: 1.2; letter-spacing: -0.02em; font-weight: 700; }
+.display { font-family: "Anybody", "Arial Narrow", sans-serif; }
 
-/* ambient glow behind the hero */
-.glow {
-  position: absolute; inset: 0 0 auto 0; height: 760px; z-index: 0; pointer-events: none;
-  background:
-    radial-gradient(700px 420px at 82% 24%, var(--glow-a), transparent 70%),
-    radial-gradient(620px 420px at 6% 0%, var(--glow-b), transparent 70%);
+/* label tape: the one recurring object */
+.tape {
+  display: inline-block; background: var(--tape-bg); color: var(--tape-fg);
+  font: 600 .95em/1.2 "Anybody", sans-serif; font-stretch: 100%; letter-spacing: .02em;
+  padding: .22em .6em .26em; border-radius: 3px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 1px 0 rgba(0,0,0,.25);
 }
-.glow::after {
-  content: ""; position: absolute; inset: 0;
-  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 56px 56px;
-  -webkit-mask-image: radial-gradient(520px 340px at 78% 30%, #000, transparent 75%);
-          mask-image: radial-gradient(520px 340px at 78% 30%, #000, transparent 75%);
-}
-main, .topbar, .foot { position: relative; z-index: 1; }
 
-/* ---------- header ---------- */
-.topbar {
-  position: sticky; top: 0; z-index: 10;
-  background: color-mix(in srgb, var(--bg) 82%, transparent);
-  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--line);
-}
-.topbar-in { max-width: 1120px; margin: 0 auto; padding: 0 24px; height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.brand { display: inline-flex; align-items: center; gap: 12px; font-weight: 700; font-size: 20px; letter-spacing: -0.01em; }
-.brand img { width: 36px; height: 36px; border-radius: 9px; }
-.brand b { font-weight: 700; color: var(--accent); }
-.brand-sm { font-size: 16px; } .brand-sm img { width: 28px; height: 28px; border-radius: 7px; }
-.links { display: flex; align-items: center; gap: 26px; font-size: 14px; font-weight: 500; color: var(--text-2); }
-.links a { padding: 6px 2px; transition: color .15s ease; }
-.links a:hover { color: var(--text-1); }
-.btn-icon {
-  appearance: none; background: var(--surface); color: var(--text-1);
-  border: 1px solid var(--line); border-radius: 10px;
-  width: 40px; height: 40px; font-size: 16px; line-height: 1; cursor: pointer;
-  display: grid; place-items: center;
-  transition: border-color .15s ease, background .15s ease;
-}
-.btn-icon:hover { border-color: var(--accent); }
+/* header */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 0; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 800 1.25rem/1 "Anybody", sans-serif; font-stretch: 85%; }
+.brand svg { width: 28px; height: 28px; }
+.nav { display: flex; align-items: center; gap: 22px; }
+.nav a { text-decoration: none; font-weight: 500; }
+.nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.theme { font: inherit; background: none; color: inherit; border: 1.5px solid var(--line); border-radius: 999px; width: 40px; height: 40px; cursor: pointer; }
+.theme:hover { border-color: var(--ink); }
+@media (max-width: 560px) { .nav .hide-sm { display: none; } }
 
-/* ---------- buttons ---------- */
+/* hero */
+.hero {
+  background-image: radial-gradient(circle at center, var(--hole) 2.5px, transparent 3px);
+  background-size: 32px 32px; background-position: 16px 16px;
+  padding: clamp(40px, 8vw, 96px) 0 clamp(48px, 8vw, 104px);
+}
+.hero h1 {
+  margin: 0; max-width: 11ch; text-wrap: balance;
+  font: 850 clamp(3.4rem, 12.5vw, 10.5rem)/.88 "Anybody", sans-serif; font-stretch: 62%; letter-spacing: -.01em;
+}
+.hero-lede { max-width: 52ch; margin: 32px 0 0; font-size: 1.25rem; line-height: 1.55; color: var(--ink-2); }
+.tapes { display: flex; flex-wrap: wrap; gap: 10px; margin: 36px 0 0; padding: 0; list-style: none; font-size: 1.25rem; }
+.tapes .tape { clip-path: inset(0 100% 0 0); animation: print .7s cubic-bezier(.2,.7,.2,1) forwards; }
+.tapes li:nth-child(1) .tape { animation-delay: .15s; }
+.tapes li:nth-child(2) .tape { animation-delay: .45s; }
+.tapes li:nth-child(3) .tape { animation-delay: .75s; }
+@keyframes print { to { clip-path: inset(0 0 0 0); } }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 40px; }
 .btn {
-  display: inline-flex; align-items: center; gap: 9px; padding: 13px 22px; border-radius: 11px;
-  font-weight: 600; font-size: 15px; border: 1px solid var(--line); color: var(--text-1);
-  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; border-radius: 6px;
+  font: 600 1rem/1 "Instrument Sans", sans-serif; text-decoration: none; border: 2px solid transparent;
 }
-.btn:hover { transform: translateY(-1px); }
-.btn-primary {
-  background: linear-gradient(135deg, var(--brand-a), var(--brand-b)); color: var(--on-brand); border-color: transparent;
-  box-shadow: 0 10px 28px rgba(45,212,191,0.28);
-}
-.btn-primary:hover { box-shadow: 0 14px 34px rgba(45,212,191,0.38); }
-.btn-ghost { background: var(--surface); }
-.btn-ghost:hover { border-color: var(--accent); }
-.arrow { width: 16px; height: 16px; flex-shrink: 0; transition: transform .2s ease; }
-:is(a:hover) > .arrow, a:hover .arrow { transform: translate(2px, -2px); }
-
-/* ---------- hero ---------- */
-.hero { padding: 88px 0 96px; overflow-x: clip; }
-.hero-in { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: 48px; align-items: center; }
-h1 { font-size: clamp(38px, 5.6vw, 64px); line-height: 1.05; letter-spacing: -0.035em; font-weight: 800; margin-bottom: 22px; text-wrap: balance; }
-h1 em {
-  font-style: normal; color: var(--accent);
-  background: linear-gradient(120deg, var(--accent), var(--accent-2) 55%, var(--violet));
-  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-}
-.lede { font-size: 19px; color: var(--text-2); max-width: 520px; text-wrap: pretty; }
-.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
-.stats { display: flex; gap: 40px; margin-top: 48px; padding-top: 26px; border-top: 1px solid var(--line); max-width: 520px; }
-.stats dt { font-size: 13px; color: var(--text-3); order: 2; }
-.stats dd { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
-.stats div { display: flex; flex-direction: column; }
-.hero-art { display: flex; justify-content: center; --s: min(440px, 80vw); }
-/* stage */
-.stage{position:relative;width:var(--s);aspect-ratio:1;margin:auto;perspective:900px}
-.aura{position:absolute;inset:-10%;border-radius:50%;filter:blur(40px);background:conic-gradient(from 0deg,rgba(45,212,191,.5),rgba(56,189,248,.35),rgba(167,139,250,.5),rgba(45,212,191,.5));animation:fm-spin 14s linear infinite,fm-breathe 5s ease-in-out infinite}
-@keyframes fm-spin{to{transform:rotate(360deg)}}
-@keyframes fm-breathe{0%,100%{opacity:.45;scale:.92}50%{opacity:.85;scale:1.05}}
-.ring{position:absolute;inset:2%;width:96%;height:96%;overflow:visible}
-.ring .r1{transform-origin:240px 240px;animation:fm-spin 40s linear infinite}
-.ring .r2{transform-origin:240px 240px;animation:fm-spin 60s linear infinite reverse}
-.orbit{position:absolute;inset:0;pointer-events:none}
-.orb{position:absolute;left:50%;top:50%;width:0;height:0;animation:spin var(--t) linear infinite;animation-delay:var(--d)}
-.orb i{position:absolute;left:calc(var(--s)*var(--r));top:-4px;width:8px;height:8px;border-radius:50%;background:#fff;box-shadow:0 0 12px 3px var(--c),0 0 26px 6px var(--c);animation:fm-pulse 2.4s ease-in-out infinite;animation-delay:var(--d)}
-@keyframes fm-pulse{0%,100%{transform:scale(.6);opacity:.6}50%{transform:scale(1.3);opacity:1}}
-.tilt{position:absolute;inset:11%;transform-style:preserve-3d;transition:transform .15s ease-out;animation:fm-float 6s ease-in-out infinite}
-@keyframes fm-float{0%,100%{translate:0 0}50%{translate:0 -12px}}
-.tile{width:100%;height:100%;border-radius:22%;overflow:hidden;box-shadow:0 0 70px rgba(45,212,191,.35),inset 0 0 0 1px rgba(255,255,255,.08)}
-.tile svg{width:100%;height:100%;display:block}
-.motes{position:absolute;inset:0;pointer-events:none;overflow:visible}
-.mote{position:absolute;bottom:34%;width:6px;height:6px;border-radius:50%;background:#fff;box-shadow:0 0 10px 2px var(--c);opacity:0;animation:drift var(--t) ease-out infinite;animation-delay:var(--d)}
-@keyframes fm-drift{0%{transform:translate(0,0) scale(.4);opacity:0}15%{opacity:1}100%{transform:translate(var(--x),calc(var(--s)*-.7)) scale(1.1);opacity:0}}
-.burst{position:absolute;width:7px;height:7px;border-radius:50%;pointer-events:none;background:#fff;box-shadow:0 0 12px 3px var(--c);animation:pop .9s ease-out forwards}
-@keyframes fm-pop{to{transform:translate(var(--dx),var(--dy)) scale(0);opacity:0}}
-
-/* in-svg */
-@keyframes fm-slosh{to{transform:translateX(-200px)}}
-@keyframes fm-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
-@keyframes fm-rise{0%{transform:translateY(0) scale(.6);opacity:0}12%{opacity:.95}100%{transform:translateY(-170px) scale(1.1);opacity:0}}
-@keyframes fm-twinkle{0%,100%{transform:scale(.5) rotate(0);opacity:.3}50%{transform:scale(1.3) rotate(45deg);opacity:1}}
-@keyframes fm-glow{0%,100%{opacity:.5}50%{opacity:1}}
-@keyframes fm-hue{0%,100%{filter:hue-rotate(0)}50%{filter:hue-rotate(55deg)}}
-@keyframes fm-glint{0%,60%{transform:translateX(-160px)}100%{transform:translateX(560px)}}
-.wave1{animation:fm-slosh 4.5s linear infinite}.wave2{animation:fm-slosh 7s linear infinite reverse}
-.liq{animation:fm-bob 4s ease-in-out infinite}
-.hue{animation:fm-hue 9s ease-in-out infinite}
-.bub{transform-box:fill-box;transform-origin:center;animation:fm-rise 4.2s ease-in infinite;opacity:0}
-.b2{animation-delay:1.1s;animation-duration:3.6s}.b3{animation-delay:2.2s;animation-duration:4.8s}.b4{animation-delay:3s;animation-duration:3.9s}
-.sp{transform-box:fill-box;transform-origin:center;animation:fm-twinkle 2.8s ease-in-out infinite}
-.sp2{animation-delay:1.3s}.sp3{animation-delay:.7s}.sp4{animation-delay:2s}
-.halo{animation:fm-glow 3.5s ease-in-out infinite}
-.glint{animation:fm-glint 6s ease-in-out infinite}
-.paused *,.paused{animation-play-state:paused!important}
-@media (prefers-reduced-motion:reduce){.stage *{animation:none!important}.mote,.bub,.orbit,.aura{display:none}}
+.btn-main { background: var(--litmus); color: var(--on-litmus); }
+.btn-main:hover { background: var(--ink); color: var(--bench); }
+.btn-quiet { border-color: var(--ink); }
+.btn-quiet:hover { background: var(--ink); color: var(--bench); }
 
 
-/* ---------- sections ---------- */
-.side { padding: 72px 0 8px; }
-.side + .side { padding-top: 56px; }
-h2 + .feature-grid, h2 + .tracks { margin-top: 34px; }
+/* hero flask: the lab's mark, flat in the bench palette */
+.hero-grid { display: grid; gap: 40px 48px; align-items: center; }
+@media (min-width: 1100px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr) auto; }
+  .hero h1 { font-size: clamp(3.4rem, 9.5vw, 9.5rem); }
+}
+.flask { --liq: var(--litmus); appearance: none; background: none; border: 0; padding: 0; cursor: pointer; width: min(400px, 78vw); aspect-ratio: 1; justify-self: start; border-radius: 12px; }
+@media (max-width: 640px) { .flask { width: min(220px, 56vw); } }
+@media (min-width: 1100px) { .flask { width: clamp(340px, 36vw, 500px); justify-self: end; } }
+.flask[aria-pressed="true"] { --liq: var(--indicator); }
+.flask svg { display: block; width: 100%; height: 100%; overflow: visible; transition: transform .2s; }
+.flask:active svg { transform: scale(.96); }
+.f-sway { transform-origin: 200px 330px; animation: f-sway 7s ease-in-out infinite; }
+.f-liq { fill: var(--liq); transition: fill .5s ease; }
+.f-line { fill: none; stroke: var(--ink); stroke-width: 14; stroke-linejoin: round; stroke-linecap: round; }
+.f-cap { fill: var(--ink); }
+.f-tick { stroke: var(--ink); stroke-width: 3.5; stroke-linecap: round; }
+.f-bub { fill: var(--paper); opacity: 0; transform-box: fill-box; transform-origin: center; animation: f-rise 4.2s ease-in infinite; }
+.f-bub.b2 { animation-delay: 1.3s; animation-duration: 3.6s; } .f-bub.b3 { animation-delay: 2.4s; animation-duration: 4.8s; }
+.f-bub.b4 { animation-delay: .6s; animation-duration: 3.2s; } .f-bub.b5 { animation-delay: 3.1s; animation-duration: 4.4s; } .f-bub.b6 { animation-delay: 1.9s; animation-duration: 3.9s; }
+.f-w1 { animation: f-slosh 5s linear infinite; } .f-w2 { animation: f-slosh 8s linear infinite reverse; }
+.f-body { animation: f-bob 4s ease-in-out infinite; }
+.f-glint { animation: f-glint 6s ease-in-out infinite; }
+.f-drop { fill: var(--liq); transition: fill .5s ease; opacity: 0; animation: f-drop 7s cubic-bezier(.5,0,.9,.6) infinite; }
+.f-ripple { fill: none; stroke: var(--paper); stroke-width: 4; opacity: 0; transform-box: fill-box; transform-origin: center; animation: f-ripple 7s ease-out infinite; }
+.f-steam { fill: none; stroke: var(--ink); stroke-width: 5; stroke-linecap: round; opacity: 0; animation: f-steam 5s ease-out infinite; }
+.f-steam.s2 { animation-delay: 1.7s; } .f-steam.s3 { animation-delay: 3.3s; }
+.f-star { fill: var(--indicator); stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; transform-box: fill-box; transform-origin: center; animation: f-twinkle 3s ease-in-out infinite; }
+.f-star.t2 { animation-delay: 1s; } .f-star.t3 { animation-delay: 2s; }
+@keyframes f-sway { 0%, 100% { transform: rotate(-1.6deg); } 50% { transform: rotate(1.6deg); } }
+@keyframes f-slosh { to { transform: translateX(-200px); } }
+@keyframes f-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+@keyframes f-rise { 0% { transform: translateY(0) scale(.6); opacity: 0; } 15% { opacity: .9; } 85% { opacity: .9; } 100% { transform: translateY(-70px) scale(1.15); opacity: 0; } }
+@keyframes f-glint { 0%, 55% { transform: translateX(0); } 100% { transform: translateX(520px); } }
+@keyframes f-drop { 0% { transform: translateY(0); opacity: 0; } 2% { opacity: 1; } 15% { transform: translateY(244px); opacity: 1; } 16%, 100% { transform: translateY(244px); opacity: 0; } }
+@keyframes f-ripple { 0%, 15% { transform: scale(.1); opacity: 0; } 16% { transform: scale(.2); opacity: .9; } 32%, 100% { transform: scale(1); opacity: 0; } }
+@keyframes f-steam { 0% { transform: translateY(0); opacity: 0; } 20% { opacity: .5; } 100% { transform: translateY(-50px); opacity: 0; } }
+@keyframes f-twinkle { 0%, 100% { transform: scale(.4) rotate(0); opacity: .4; } 50% { transform: scale(1.1) rotate(45deg); opacity: 1; } }
 
-/* featured cards */
-.feature-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-.feature {
-  display: flex; flex-direction: column; background: var(--surface);
-  border: 1px solid var(--line); border-radius: 18px; padding: 26px;
-  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
-}
-.feature:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 60%, var(--line)); box-shadow: var(--shadow); }
-.feature--wide {
-  grid-column: span 2;
-  background: radial-gradient(520px 220px at 100% 0%, var(--glow-a), transparent 70%), var(--surface);
-}
-.ico {
-  width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; margin-bottom: 18px;
-  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
-  border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
-}
-.ico svg { width: 22px; height: 22px; }
-.tag {
-  align-self: flex-start; font: 600 11px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
-  letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-2);
-  border: 1px solid var(--line); border-radius: 99px; padding: 5px 10px; margin-bottom: 14px;
-}
-.feature h3 { font-size: 20px; letter-spacing: -0.01em; margin-bottom: 8px; }
-.feature p { font-size: 15px; color: var(--text-2); margin-bottom: auto; }
-.go { display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; font-size: 14px; font-weight: 600; color: var(--accent); }
+/* section heads */
+section { scroll-margin-top: 16px; }
+.sec { padding: clamp(56px, 8vw, 96px) 0; }
+.sec-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px 32px; margin-bottom: 32px; }
+.sec h2 { margin: 0; font: 800 clamp(2.2rem, 5.5vw, 4rem)/.95 "Anybody", sans-serif; font-stretch: 78%; }
+.sec-note { margin: 0; color: var(--ink-2); max-width: 36ch; }
 
-/* more tools: compact rows */
-.tracks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 16px; }
-.track {
-  display: grid; grid-template-columns: minmax(0, 1fr) auto 16px; align-items: center; column-gap: 14px; height: 100%;
-  background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px;
-  transition: border-color .18s ease, transform .18s ease, background .18s ease;
+/* featured: an index, read like a drawer list */
+.index { margin: 0; padding: 0; list-style: none; border-top: 2px solid var(--ink); }
+.index li { border-bottom: 1px solid var(--line); }
+.row {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr) 4rem; gap: 8px 32px; align-items: center;
+  padding: 26px 12px; text-decoration: none; position: relative;
 }
-.track:hover { border-color: color-mix(in srgb, var(--accent) 60%, var(--line)); transform: translateX(3px); background: var(--surface-2); }
-.track-body { min-width: 0; }
-.track-title { display: block; font-weight: 600; font-size: 15.5px; letter-spacing: -0.005em; }
-.track-desc { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 13.5px; line-height: 1.5; color: var(--text-2); margin-top: 3px; }
-.track-tag { font: 600 10.5px/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); }
-.track .arrow { color: var(--text-3); }
-.track:hover .arrow { color: var(--accent); }
+.row:hover { background: var(--paper); box-shadow: inset 6px 0 0 var(--indicator); }
+.row-name { font: 800 clamp(1.7rem, 3.4vw, 2.6rem)/1 "Anybody", sans-serif; font-stretch: 80%; }
+.row-desc { color: var(--ink-2); max-width: 58ch; }
+.row-go { font-weight: 600; text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 2px; }
+.row .tape { font-size: .8rem; margin-left: 12px; vertical-align: .35em; }
+@media (max-width: 860px) {
+  .row { grid-template-columns: 1fr; padding: 22px 4px; }
+  .row .tape { margin-left: 10px; }
+}
+
+/* everything else: a tool wall */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; padding: 0; list-style: none; }
+.chip {
+  font: 500 .95rem/1 "Instrument Sans", sans-serif; color: inherit; background: none;
+  border: 1.5px solid var(--line); border-radius: 999px; padding: 10px 16px; cursor: pointer; min-height: 40px;
+}
+.chip:hover { border-color: var(--ink); }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--bench); border-color: var(--ink); }
+.wall { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0 40px; margin: 0; padding: 0; list-style: none; }
+.tool { border-top: 1px solid var(--line); padding: 20px 0 26px; }
+.tool a { text-decoration: none; display: block; }
+.tool .tape { font-size: 1.05rem; transition: background .15s; }
+.tool a:hover .tape { background: var(--litmus); color: var(--on-litmus); }
+.tool p { margin: 12px 0 0; color: var(--ink-2); font-size: 1rem; line-height: 1.5; }
+.tool small { display: block; margin-top: 10px; color: var(--ink-2); font-size: .9rem; }
+.empty { color: var(--ink-2); }
 
 /* about */
-.about { margin-top: 80px; padding: 84px 0; background: var(--surface-2); border-block: 1px solid var(--line); }
-.about-in { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
-.about-p { color: var(--text-2); margin-top: 16px; max-width: 520px; }
-.points { display: grid; gap: 14px; }
-.points li { display: flex; gap: 16px; padding: 18px 20px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
-.points b { display: block; font-weight: 600; }
-.points span:not(.pt-ico) { color: var(--text-2); font-size: 14.5px; }
-.pt-ico { width: 40px; height: 40px; flex-shrink: 0; border-radius: 10px; display: grid; place-items: center; color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); }
-.pt-ico svg { width: 20px; height: 20px; }
+.about { background: var(--paper); border-block: 1px solid var(--line); }
+.about-grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 48px; align-items: start; }
+.about p { margin: 0 0 20px; max-width: 60ch; }
+.principles { margin: 0; display: grid; gap: 22px; }
+.principles dt { font: 700 1.5rem/1.1 "Anybody", sans-serif; font-stretch: 85%; }
+.principles dd { margin: 4px 0 0; color: var(--ink-2); }
+@media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; gap: 32px; } }
 
-/* CTA */
-.cta-card {
-  margin: 84px 0; padding: 56px 28px; text-align: center; border: 1px solid var(--line); border-radius: 24px;
-  background: radial-gradient(560px 240px at 50% 0%, var(--glow-a), transparent 70%), var(--surface);
-}
-.cta-card p { color: var(--text-2); max-width: 480px; margin: 10px auto 26px; }
+/* cta */
+.cta { background: var(--litmus); color: var(--on-litmus); }
+.cta .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 28px 48px; padding-block: clamp(56px, 8vw, 96px); }
+.cta h2 { margin: 0; font: 850 clamp(2.4rem, 6vw, 4.6rem)/.92 "Anybody", sans-serif; font-stretch: 70%; max-width: 14ch; }
+.cta p { margin: 14px 0 0; font-size: 1.2rem; max-width: 40ch; }
+.btn-ind { background: var(--indicator); color: var(--on-indicator); }
+.btn-ind:hover { background: var(--on-litmus); color: var(--litmus); }
+.cta :focus-visible { outline-color: var(--on-litmus); }
 
-/* footer */
-.foot { border-top: 1px solid var(--line); padding: 34px 0 40px; }
-.foot-in { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 28px; }
-.foot-links { display: flex; gap: 24px; font-size: 14px; color: var(--text-2); }
-.foot-links a:hover { color: var(--text-1); }
-.copy { width: 100%; font-size: 13px; color: var(--text-3); }
+footer { padding: 32px 0 48px; color: var(--ink-2); font-size: .95rem; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 32px; }
+footer nav { display: flex; gap: 20px; }
 
-/* ---------- reveal on scroll ---------- */
-.js-reveal .reveal { opacity: 0; transform: translateY(12px); transition: opacity .55s ease, transform .55s ease; transition-delay: calc(var(--i, 0) * 45ms); }
-.js-reveal .reveal.is-in { opacity: 1; transform: none; }
-.js-reveal .feature.reveal.is-in, .js-reveal .reveal.is-in .track { transition-delay: 0s; }
-
-@media (max-width: 860px) {
-  .hero { padding: 56px 0 64px; }
-  .hero-in, .about-in { grid-template-columns: 1fr; gap: 36px; }
-  .hero-art { order: -1; justify-content: flex-start; }
-  .hero-art { --s: 210px; }
-  .feature-grid, .tracks { grid-template-columns: 1fr; }
-  .feature--wide { grid-column: auto; }
-  .links a:not(.btn-icon) { display: none; }
-  .stats { gap: 28px; }
-  .cta-card { padding: 40px 20px; }
-}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  * { transition: none !important; }
+  .tapes .tape { animation: none; clip-path: none; }
+  .tool .tape { transition: none; }
+  .f-sway, .f-bub, .f-w1, .f-w2, .f-body, .f-glint, .f-drop, .f-ripple, .f-steam, .f-star { animation: none; }
+  .f-bub, .f-drop, .f-ripple, .f-steam { display: none; } .f-liq, .flask svg { transition: none; }
 }
-
 </style>
 </head>
 <body>
-<div class="glow" aria-hidden="true"></div>
 
-<header class="topbar">
-  <div class="topbar-in">
-    <a class="brand" href="/"><img src="assets/logo.svg" alt="" width="36" height="36"><span>Ranmal <b>Labs</b></span></a>
-    <nav class="links" aria-label="Primary">
-      <a href="#tools">Tools</a>
-      <a href="#about">About</a>
-      <a href="https://www.linkedin.com/company/ranmal-labs/" rel="noopener">LinkedIn</a>
-      <button class="btn-icon" id="theme-toggle" title="Toggle light/dark theme" aria-label="Toggle theme">◐</button>
-    </nav>
-  </div>
+<header class="wrap top">
+  <a class="brand" href="#top" aria-label="Ranmal Labs home">
+    <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M12 3h8M13.5 3v8.5L5.8 24.4A3 3 0 0 0 8.4 29h15.2a3 3 0 0 0 2.6-4.6L18.5 11.5V3" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 20h14" stroke="var(--litmus)" stroke-width="2.4" stroke-linecap="round"/></svg>
+    Ranmal Labs
+  </a>
+  <nav class="nav" aria-label="Main">
+    <a href="#tools">Tools</a>
+    <a href="#about">About</a>
+    <a class="hide-sm" href="https://www.linkedin.com/company/ranmal-labs/">LinkedIn</a>
+    <button class="theme" id="theme-toggle" type="button" title="Toggle light/dark theme" aria-label="Toggle theme">◐</button>
+  </nav>
 </header>
 
-<main>
-  <section class="hero">
-    <div class="shell hero-in">
+<main id="top">
+  <section class="hero" aria-labelledby="h1">
+    <div class="wrap hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow">Independent web studio</p>
-        <h1>Small, useful <em>web tools</em> that do one job well.</h1>
-        <p class="lede">Free, fast and private. Everything runs in your browser, with no sign-up and nothing to install. Designed, built and maintained by Ketan Ranmal.</p>
-        <div class="cta">
-          <a class="btn btn-primary" href="#tools">Explore the tools <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-          <a class="btn btn-ghost" href="#about">About the lab</a>
-        </div>
-        <dl class="stats">
-          <div><dt>Live tools</dt><dd><span id="count">31</span></dd></div>
-          <div><dt>Price</dt><dd>Free</dd></div>
-          <div><dt>Sign-ups</dt><dd>None</dd></div>
-        </dl>
+      <h1 id="h1">Small, useful web tools.</h1>
+      <p class="hero-lede">Each one does a single job well. They run in your browser, so there’s nothing to install and no account to make. Designed, built and maintained by Ketan Ranmal.</p>
+      <ul class="tapes" aria-label="At a glance">
+        <li><span class="tape"><span id="count">31</span> tools</span></li>
+        <li><span class="tape">Free</span></li>
+        <li><span class="tape">No sign-up</span></li>
+      </ul>
+      <div class="actions">
+        <a class="btn btn-main" href="#tools">Browse the tools</a>
+        <a class="btn btn-quiet" href="#about">About the lab</a>
       </div>
-      <div class="hero-art" aria-hidden="true"><div class="stage" id="stage"><div class="aura"></div>
-
-    <svg class="ring" viewBox="0 0 480 480" aria-hidden="true">
-      <g class="r1" fill="none" stroke="#7dd3fc" stroke-opacity=".35">
-        <circle cx="240" cy="240" r="228" stroke-dasharray="2 10"/>
-        <circle cx="240" cy="240" r="214" stroke-opacity=".18"/>
-      </g>
-      <g class="r2" fill="none" stroke="#2dd4bf" stroke-opacity=".4">
-        <circle cx="240" cy="240" r="200" stroke-dasharray="40 14 4 14"/>
-        <path d="M240 36l5 9h-10zM444 240l-9 5v-10zM240 444l-5-9h10zM36 240l9-5v10z" fill="#2dd4bf" stroke="none" opacity=".8"/>
-      </g>
-    </svg>
-    <div class="motes" aria-hidden="true">
-      <i class="mote" style="left:46%;--x:-30px;--t:5s;--d:0s;--c:#2dd4bf"></i>
-      <i class="mote" style="left:52%;--x:40px;--t:6s;--d:1.2s;--c:#38bdf8"></i>
-      <i class="mote" style="left:49%;--x:-60px;--t:5.5s;--d:2.4s;--c:#a78bfa"></i>
-      <i class="mote" style="left:55%;--x:20px;--t:6.5s;--d:3.4s;--c:#2dd4bf"></i>
-      <i class="mote" style="left:43%;--x:50px;--t:5.2s;--d:4.2s;--c:#38bdf8"></i>
-      <i class="mote" style="left:50%;--x:-10px;--t:7s;--d:.6s;--c:#fff"></i>
-    </div>
-
-    <div class="tilt" id="tilt"><div class="tile" id="tile">
-<svg viewBox="0 0 400 400" focusable="false">
-<defs>
-<radialGradient id="fm-gA" cx="20%" cy="95%" r="75%"><stop offset="0" stop-color="#14b8a6" stop-opacity=".40"/><stop offset="1" stop-color="#14b8a6" stop-opacity="0"/></radialGradient>
-<radialGradient id="fm-gB" cx="90%" cy="5%" r="75%"><stop offset="0" stop-color="#6366f1" stop-opacity=".50"/><stop offset="1" stop-color="#6366f1" stop-opacity="0"/></radialGradient>
-<linearGradient id="fm-ac" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2dd4bf"/><stop offset=".55" stop-color="#38bdf8"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
-<linearGradient id="fm-liq" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#14b8a6"/><stop offset=".5" stop-color="#38bdf8"/><stop offset="1" stop-color="#818cf8"/></linearGradient>
-<linearGradient id="fm-gl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
-<pattern id="fm-dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#fff" opacity=".07"/></pattern>
-<filter id="fm-blur" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="12"/></filter>
-<clipPath id="fm-fl"><path d="M168 80H232V152L304 282Q320 318 284 318H116Q80 318 96 282L168 152Z"/></clipPath>
-<path id="fm-sp" d="M0 -16Q2 -2 16 0Q2 2 0 16Q-2 2 -16 0Q-2 -2 0 -16Z" fill="#f8fafc"/>
-</defs>
-<rect width="400" height="400" fill="#070b16"/><rect width="400" height="400" fill="url(#fm-gA)"/><rect width="400" height="400" fill="url(#fm-gB)"/><rect width="400" height="400" fill="url(#fm-dots)"/>
-<circle cx="200" cy="205" r="150" fill="none" stroke="#fff" stroke-opacity=".06" stroke-width="2"/>
-<g transform="translate(0,6)">
-<path class="halo" d="M168 80H232V152L304 282Q320 318 284 318H116Q80 318 96 282L168 152Z" fill="none" stroke="url(#fm-ac)" stroke-width="16" stroke-linejoin="round" filter="url(#fm-blur)"/>
-<g clip-path="url(#fm-fl)">
-  <g class="hue"><g class="liq">
-    <rect x="60" y="215" width="280" height="140" fill="url(#fm-liq)" opacity=".3"/>
-    <g class="wave2" opacity=".55"><path d="M-340 226Q-290 206 -240 226T-140 226T-40 226T60 226T160 226T260 226T360 226T460 226T560 226T660 226T760 226T860 226V345H-340Z" fill="url(#fm-liq)"/></g>
-    <g class="wave1"><path d="M-340 222Q-290 200 -240 222T-140 222T-40 222T60 222T160 222T260 222T360 222T460 222T560 222T660 222T760 222T860 222V345H-340Z" fill="url(#fm-liq)"/>
-    <path d="M-340 222Q-290 200 -240 222T-140 222T-40 222T60 222T160 222T260 222T360 222T460 222T560 222T660 222T760 222T860 222" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="3"/></g>
-    <path d="M104 262Q120 292 138 300" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="5" stroke-linecap="round"/>
-  </g></g>
-  <circle class="bub b1" cx="190" cy="290" r="9" fill="#fff" fill-opacity=".4"/>
-  <circle class="bub b2" cx="238" cy="296" r="6" fill="#fff" fill-opacity=".4"/>
-  <circle class="bub b3" cx="160" cy="300" r="5" fill="#fff" fill-opacity=".35"/>
-  <circle class="bub b4" cx="212" cy="285" r="4" fill="#bae6fd" fill-opacity=".7"/>
-  <!-- light glint sweeping across the glass -->
-  <g transform="skewX(-20)"><rect class="glint" x="0" y="60" width="40" height="280" fill="url(#fm-gl)"/></g>
-</g>
-<path d="M168 80H232V152L304 282Q320 318 284 318H116Q80 318 96 282L168 152Z" fill="none" stroke="url(#fm-ac)" stroke-width="12" stroke-linejoin="round"/>
-<rect x="154" y="64" width="92" height="16" rx="8" fill="url(#fm-ac)"/>
-<circle cx="200" cy="170" r="8" fill="#f8fafc"/><circle cx="218" cy="132" r="5.5" fill="#bae6fd"/><circle cx="188" cy="108" r="4" fill="#99f6e4"/><circle cx="212" cy="96" r="3" fill="#f8fafc" opacity=".8"/>
-</g>
-<g transform="translate(300,92)"><use class="sp" href="#fm-sp"/></g>
-<g transform="translate(96,128) scale(.6)"><use class="sp sp2" href="#fm-sp"/></g>
-<g transform="translate(330,230) scale(.45)"><use class="sp sp3" href="#fm-sp"/></g>
-<g transform="translate(70,250) scale(.4)"><use class="sp sp4" href="#fm-sp"/></g>
-</svg>
-    </div></div>
-  </div></div>
+      </div>
+      <button class="flask" id="flask" type="button" aria-pressed="false" aria-label="Flask logo. Press to change the liquid colour between blue and yellow.">
+        <svg viewBox="0 0 400 400" focusable="false" aria-hidden="true">
+          <defs>
+            <clipPath id="f-clip"><path d="M168 80H232V152L304 282Q320 318 284 318H116Q80 318 96 282L168 152Z"/></clipPath>
+            <linearGradient id="f-sheen" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+            <path id="f-sp" d="M0-16Q2-2 16 0Q2 2 0 16Q-2 2-16 0Q-2-2 0-16Z"/>
+          </defs>
+          <g class="f-sway">
+            <path class="f-steam" d="M186 56q-10-14 0-28t0-28"/>
+            <path class="f-steam s2" d="M214 56q10-14 0-28t0-28"/>
+            <path class="f-steam s3" d="M200 56q-8-12 0-24t0-24"/>
+            <g clip-path="url(#f-clip)">
+              <g class="f-body">
+                <g class="f-w2" opacity=".5"><path class="f-liq" d="M-340 228 Q-290 206 -240 228 T-140 228 T-40 228 T60 228 T160 228 T260 228 T360 228 T460 228 T560 228 T660 228 T760 228 T860 228 V345H-340Z"/></g>
+                <g class="f-w1"><path class="f-liq" d="M-340 222 Q-290 200 -240 222 T-140 222 T-40 222 T60 222 T160 222 T260 222 T360 222 T460 222 T560 222 T660 222 T760 222 T860 222 V345H-340Z"/></g>
+              </g>
+              <circle class="f-bub" cx="140" cy="304" r="8"/><circle class="f-bub b2" cx="256" cy="306" r="6"/><circle class="f-bub b3" cx="208" cy="300" r="5"/>
+              <circle class="f-bub b4" cx="176" cy="308" r="4"/><circle class="f-bub b5" cx="232" cy="302" r="7"/><circle class="f-bub b6" cx="120" cy="296" r="4"/>
+              <g transform="skewX(-20)"><rect class="f-glint" x="-120" y="60" width="44" height="280" fill="url(#f-sheen)"/></g>
+              <ellipse class="f-ripple" cx="200" cy="224" rx="46" ry="7"/>
+            </g>
+            <path class="f-line" d="M168 80H232V152L304 282Q320 318 284 318H116Q80 318 96 282L168 152Z"/>
+            <rect class="f-cap" x="152" y="62" width="96" height="18" rx="9"/>
+            <path class="f-tick" d="M214 108h12M214 124h12M214 140h12M122 262h14M118 280h14"/>
+            <path class="f-drop" d="M200 -24q-9 14-9 22a9 9 0 0 0 18 0q0-8-9-22z"/>
+          </g>
+          <use class="f-star" href="#f-sp" transform="translate(330 96)"/>
+          <use class="f-star t2" href="#f-sp" transform="translate(66 150) scale(.7)"/>
+          <use class="f-star t3" href="#f-sp" transform="translate(346 250) scale(.5)"/>
+        </svg>
+      </button>
     </div>
   </section>
 
-  <section class="side" id="tools" aria-labelledby="featured">
-    <div class="shell">
-      <p class="eyebrow">The lab</p>
-      <h2 id="featured">What's live today</h2>
-      <div class="feature-grid">
-      <a class="feature feature--wide reveal" style="--i:0" href="https://kranmal.github.io/lendly/">
-        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h11l-3-3M17 17H6l3 3"/></svg></span>
-        <span class="tag">App</span>
-        <h3>Lendly</h3>
-        <p>Track what you've lent out and borrowed — items, people, and due dates, all in one place.</p>
-        <span class="go">Open Lendly <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-      </a>
-      <a class="feature reveal" style="--i:1" href="https://kranmal.github.io/cvclarity/">
-        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6zM14 3v4h4M9 12h6M9 16h6"/></svg></span>
-        <span class="tag">App</span>
-        <h3>CVClarity</h3>
-        <p>Check your CV gets past applicant tracking software, fix spelling and grammar, and download it free as PDF or Word. Nothing leaves your browser.</p>
-        <span class="go">Open CVClarity <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-      </a>
-      <a class="feature reveal" style="--i:2" href="https://kranmal.github.io/Vibe_Portfolio_Projects/crypto-portfolio/">
-        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg></span>
-        <span class="tag">Markets</span>
-        <h3>Crypto Portfolio</h3>
-        <p>Track a crypto portfolio's value and allocation over time, with live prices.</p>
-        <span class="go">Open Crypto Portfolio <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-      </a>
-      <a class="feature reveal" style="--i:3" href="https://kranmal.github.io/Vibe_Portfolio_Projects/cot-dashboard/">
-        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V10M12 20V4M19 20v-7"/></svg></span>
-        <span class="tag">Markets</span>
-        <h3>COT Crowding Dashboard</h3>
-        <p>Weekly CFTC positioning extremes across 45 major futures markets, updated live in the browser.</p>
-        <span class="go">Open COT Crowding Dashboard <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-      </a>
-      <a class="feature reveal" style="--i:4" href="https://kranmal.github.io/Vibe_Portfolio_Projects/prompt-grader/">
-        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.6 6 .7-4.4 4.1 1.2 6L12 16.5 6.6 19.4l1.2-6L3.4 9.3l6-.7z"/></svg></span>
-        <span class="tag">AI</span>
-        <h3>Prompt Grader</h3>
-        <p>Paste a prompt and get an instant structural score, plus a rewritten draft with the gaps marked.</p>
-        <span class="go">Open Prompt Grader <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-      </a>
-      <a class="feature reveal" style="--i:5" href="https://kranmal.github.io/tessera/">
-        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg></span>
-        <span class="tag">Markets</span>
-        <h3>Tessera</h3>
-        <p>Live Hyperliquid perpetuals dashboard: hundreds of markets with charts, alerts and light and dark themes.</p>
-        <span class="go">Open Tessera <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-      </a>
+  <section class="sec" id="tools" aria-labelledby="live-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="live-h">What’s live today</h2>
+        <p class="sec-note">Open any of these straight from here.</p>
       </div>
-    </div>
-  </section>
-
-  <section class="side" aria-labelledby="more">
-    <div class="shell">
-      <p class="eyebrow">Keep exploring</p>
-      <h2 id="more">More from the lab</h2>
-      <ul class="tracks">
-      <li class="reveal" style="--i:0"><a class="track" href="https://kranmal.github.io/Vibe_Portfolio_Projects/office-dash/">
-        <span class="track-body">
-          <span class="track-title">Office Dash</span>
-          <span class="track-desc">Jet Set Willy-style flick-screen platformer — 10 rooms of lethal coworkers, 34 papers to file, one Dundies night.</span>
-        </span>
-        <span class="track-tag">Game</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-      </a></li>
-      <li class="reveal" style="--i:1"><a class="track" href="https://kranmal.github.io/Vibe_Portfolio_Projects/weather-app/">
-        <span class="track-body">
-          <span class="track-title">Pixel Weather</span>
-          <span class="track-desc">Retro pixel-art weather app with live forecasts, air quality, and sun position.</span>
-        </span>
-        <span class="track-tag">Weather</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-      </a></li>
-      <li class="reveal" style="--i:2"><a class="track" href="https://kranmal.github.io/Vibe_Portfolio_Projects/bollocks-generator/">
-        <span class="track-body">
-          <span class="track-title">Corporate Nonsense Jargon Generator</span>
-          <span class="track-desc">Click a button, get a perfectly meaningless corporate sentence. Free jargon generator for meetings.</span>
-        </span>
-        <span class="track-tag">Generator</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-      </a></li>
-      <li class="reveal" style="--i:3"><a class="track" href="https://kranmal.github.io/Vibe_Portfolio_Projects/parapet/">
-        <span class="track-body">
-          <span class="track-title">Parapet</span>
-          <span class="track-desc">Mocked-up trust &amp; safety product — a content-moderation console with a sample queue of flagged social posts.</span>
-        </span>
-        <span class="track-tag">Concept</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-      </a></li>
-      <li class="reveal" style="--i:4"><a class="track" href="https://kranmal.github.io/Vibe_Portfolio_Projects/e2e-dashboard/">
-        <span class="track-body">
-          <span class="track-title">E2E Test Dashboard</span>
-          <span class="track-desc">Playwright test results for this site's projects, run automatically on every push.</span>
-        </span>
-        <span class="track-tag">Devtool</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-      </a></li>
-      <li class="reveal" style="--i:5"><a class="track" href="https://kranmal.github.io/Vibe_Portfolio_Projects/lorem-ipsum-generator/">
-        <span class="track-body">
-          <span class="track-title">Lorem Ipsum Generator</span>
-          <span class="track-desc">Classic Latin or themed placeholder text — pirate, space, foodie, corporate and more.</span>
-        </span>
-        <span class="track-tag">Generator</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-      </a></li>
-      <li class="reveal" style="--i:6"><a class="track" href="https://kranmal.github.io/Vibe_Portfolio_Projects/emoji-picker/">
-        <span class="track-body">
-          <span class="track-title">Emoji Keyboard</span>
-          <span class="track-desc">Search or browse 1,900+ emoji by category and copy any of them to your clipboard in one click.</span>
-        </span>
-        <span class="track-tag">Tool</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-      </a></li>
-      <li class="reveal" style="--i:7"><a class="track" href="https://kranmal.github.io/aurora-drift/">
-        <span class="track-body">
-          <span class="track-title">Aurora Drift</span>
-          <span class="track-desc">An Amiga-style demoscene intro — starfield, copper bars, a bouncing checkered ball, and a scrolltext — set to an original halftime drum &amp; bass track.</span>
-        </span>
-        <span class="track-tag">Demo</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-      </a></li>
-      <li class="reveal" style="--i:0"><a class="track" href="https://kranmal.github.io/Vibe_Portfolio_Projects/llm-cost-calculator/">
-        <span class="track-body">
-          <span class="track-title">LLM API Cost Calculator</span>
-          <span class="track-desc">Compare Claude, GPT, and Gemini API costs side by side — per request and per month.</span>
-        </span>
-        <span class="track-tag">AI</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-      </a></li>
-      <li class="reveal" style="--i:1"><a class="track" href="https://kranmal.github.io/Vibe_Portfolio_Projects/metal-prices-uk/">
-        <span class="track-body">
-          <span class="track-title">UK Precious Metal Prices</span>
-          <span class="track-desc">Live gold, silver and platinum spot prices in GBP, plus scrap melt value by purity.</span>
-        </span>
-        <span class="track-tag">Markets</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-      </a></li>
-      <li class="reveal" style="--i:2"><a class="track" href="https://kranmal.github.io/market-pulse/">
-        <span class="track-body">
-          <span class="track-title">Market Pulse</span>
-          <span class="track-desc">Live stock, crypto, and metals news aggregated from dozens of publishers worldwide, refreshed every 30 minutes.</span>
-        </span>
-        <span class="track-tag">Markets</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-      </a></li>
-      <li class="reveal" style="--i:3"><a class="track" href="https://kranmal.github.io/footlore/">
-        <span class="track-body">
-          <span class="track-title">Footlore</span>
-          <span class="track-desc">What's worth looking at, right where you're standing — sights, food and shops nearby, and a walk that strings them together.</span>
-        </span>
-        <span class="track-tag">App</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-      </a></li>
-      <li class="reveal" style="--i:4"><a class="track" href="https://kranmal.github.io/Vibe_Portfolio_Projects/station-y2/">
-        <span class="track-body">
-          <span class="track-title">Station Y2</span>
-          <span class="track-desc">A text adventure down Will Crowther's 1976 cave — his map and his magic words, rewritten from scratch, with the dark drawn around you as you go.</span>
-        </span>
-        <span class="track-tag">Game</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-      </a></li>
-      <li class="reveal" style="--i:5"><a class="track" href="https://kranmal.github.io/ratedrift/">
-        <span class="track-body">
-          <span class="track-title">RateDrift</span>
-          <span class="track-desc">Track when savings bonus rates end and fixed bonds mature, see what doing nothing costs per year, and check FSCS cover per banking licence.</span>
-        </span>
-        <span class="track-tag">App</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-      </a></li>
-      <li class="reveal" style="--i:6"><a class="track" href="https://kranmal.github.io/sysmon/">
-        <span class="track-body">
-          <span class="track-title">sysmon-widget</span>
-          <span class="track-desc">A transparent, draggable system monitor for your Linux desktop — CPU, RAM, GPU, temperatures, disks and network. Linux only.</span>
-        </span>
-        <span class="track-tag">App</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-      </a></li>
-      <li class="reveal" style="--i:7"><a class="track" href="https://kranmal.github.io/pollar-ticker/">
-        <span class="track-body">
-          <span class="track-title">pollar-ticker</span>
-          <span class="track-desc">A slim always-on-top Pollar news ticker for your Linux desktop, fed by Pollar's public RSS. Linux only.</span>
-        </span>
-        <span class="track-tag">App</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-      </a></li>
-      <li class="reveal" style="--i:0"><a class="track" href="https://kranmal.github.io/test-bank/">
-        <span class="track-body">
-          <span class="track-title">Test Bank</span>
-          <span class="track-desc">A fictional UK high-street demo bank — accounts with month-by-month statements, loans, business and private banking, and a branch finder map. Built for UI practice and test automation.</span>
-        </span>
-        <span class="track-tag">App</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-      </a></li>
-      <li class="reveal" style="--i:1"><a class="track" href="https://kranmal.github.io/inkwell/">
-        <span class="track-body">
-          <span class="track-title">Inkwell</span>
-          <span class="track-desc">A word processor in your browser: styles, tables, spelling and grammar checking, and Word import and export. Documents stay on your device.</span>
-        </span>
-        <span class="track-tag">App</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-      </a></li>
-      <li class="reveal" style="--i:2"><a class="track" href="https://kranmal.github.io/claude-usage-monitor/">
-        <span class="track-body">
-          <span class="track-title">Claude Usage Monitor</span>
-          <span class="track-desc">A small transparent Linux desktop widget and tray icon showing how much of your Claude usage limits are left and when they reset. Unofficial.</span>
-        </span>
-        <span class="track-tag">App</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-      </a></li>
-      <li class="reveal" style="--i:3"><a class="track" href="https://kranmal.github.io/linux-speedtest/">
-        <span class="track-body">
-          <span class="track-title">Linux Speedtest</span>
-          <span class="track-desc">A small transparent Linux desktop speed test: press start and watch live ping, download and upload. Linux only.</span>
-        </span>
-        <span class="track-tag">App</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-      </a></li>
-      <li class="reveal" style="--i:4"><a class="track" href="https://kranmal.github.io/linux-powermon/">
-        <span class="track-body">
-          <span class="track-title">Linux Powermon</span>
-          <span class="track-desc">A transparent Linux desktop overlay showing how much electricity your PC uses and what it costs, with a one-click energy saver and a tray icon. Linux only.</span>
-        </span>
-        <span class="track-tag">App</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-      </a></li>
-      <li class="reveal" style="--i:5"><a class="track" href="https://kranmal.github.io/proofdeck/">
-        <span class="track-body">
-          <span class="track-title">Proofdeck</span>
-          <span class="track-desc">Self-hosted test management in the style of Zephyr Scale: cases, cycles, runs and bugs, with tracker links, SSO and a phone-friendly test player. Node and SQLite, no dependencies.</span>
-        </span>
-        <span class="track-tag">App</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-      </a></li>
-      <li class="reveal" style="--i:6"><a class="track" href="https://kranmal.github.io/vacuumtube-macos/">
-        <span class="track-body">
-          <span class="track-title">VacuumTube for macOS</span>
-          <span class="track-desc">A macOS (Apple silicon) build of VacuumTube, the YouTube TV app for your desktop, by shy1132. Unofficial and unsigned.</span>
-        </span>
-        <span class="track-tag">App</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-      </a></li>
-      <li class="reveal" style="--i:7"><a class="track" href="https://kranmal.github.io/linux-keepawake/">
-        <span class="track-body">
-          <span class="track-title">Linux Keep Awake</span>
-          <span class="track-desc">A Linux system tray app that stops your computer going to sleep: keep it awake for a set time or until you turn it off. Linux only.</span>
-        </span>
-        <span class="track-tag">App</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-      </a></li>
-      <li class="reveal" style="--i:0"><a class="track" href="https://kranmal.github.io/cryptomon/">
-        <span class="track-body">
-          <span class="track-title">cryptomon</span>
-          <span class="track-desc">A transparent Linux desktop widget for your crypto portfolio: add the coins you hold and watch live value, 24h change and 7 day trend. Linux only.</span>
-        </span>
-        <span class="track-tag">App</span>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-      </a></li>
+      <ul class="index" id="featured">
+        <li><a class="row" href="https://kranmal.github.io/lendly/" aria-label="Open Lendly">
+          <span class="row-name">Lendly<span class="tape">App</span></span>
+          <span class="row-desc">Track what you've lent out and borrowed — items, people, and due dates, all in one place.</span><span class="row-go">Open</span></a></li>
+        <li><a class="row" href="https://kranmal.github.io/cvclarity/" aria-label="Open CVClarity">
+          <span class="row-name">CVClarity<span class="tape">App</span></span>
+          <span class="row-desc">Check your CV gets past applicant tracking software, fix spelling and grammar, and download it free as PDF or Word. Nothing leaves your browser.</span><span class="row-go">Open</span></a></li>
+        <li><a class="row" href="https://kranmal.github.io/Vibe_Portfolio_Projects/crypto-portfolio/" aria-label="Open Crypto Portfolio">
+          <span class="row-name">Crypto Portfolio<span class="tape">Markets</span></span>
+          <span class="row-desc">Track a crypto portfolio's value and allocation over time, with live prices.</span><span class="row-go">Open</span></a></li>
+        <li><a class="row" href="https://kranmal.github.io/Vibe_Portfolio_Projects/cot-dashboard/" aria-label="Open COT Crowding Dashboard">
+          <span class="row-name">COT Crowding Dashboard<span class="tape">Markets</span></span>
+          <span class="row-desc">Weekly CFTC positioning extremes across 45 major futures markets, updated live in the browser.</span><span class="row-go">Open</span></a></li>
+        <li><a class="row" href="https://kranmal.github.io/Vibe_Portfolio_Projects/prompt-grader/" aria-label="Open Prompt Grader">
+          <span class="row-name">Prompt Grader<span class="tape">AI</span></span>
+          <span class="row-desc">Paste a prompt and get an instant structural score, plus a rewritten draft with the gaps marked.</span><span class="row-go">Open</span></a></li>
+        <li><a class="row" href="https://kranmal.github.io/tessera/" aria-label="Open Tessera">
+          <span class="row-name">Tessera<span class="tape">Markets</span></span>
+          <span class="row-desc">Live Hyperliquid perpetuals dashboard: hundreds of markets with charts, alerts and light and dark themes.</span><span class="row-go">Open</span></a></li>
       </ul>
     </div>
   </section>
 
-  <section class="about" id="about" aria-labelledby="about-h">
-    <div class="shell about-in">
+  <section class="sec" style="padding-top:0" aria-labelledby="more-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="more-h">More from the lab</h2>
+        <p class="sec-note">Games, generators, desktop widgets and experiments.</p>
+      </div>
+      <ul class="chips" id="chips" aria-label="Filter by type"></ul>
+      <ul class="wall" id="wall">
+        <li class="tool" data-kind="Game"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/office-dash/"><span class="tape">Office Dash</span><p>Jet Set Willy-style flick-screen platformer — 10 rooms of lethal coworkers, 34 papers to file, one Dundies night.</p></a></li>
+        <li class="tool" data-kind="Weather"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/weather-app/"><span class="tape">Pixel Weather</span><p>Retro pixel-art weather app with live forecasts, air quality, and sun position.</p></a></li>
+        <li class="tool" data-kind="Generator"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/bollocks-generator/"><span class="tape">Corporate Nonsense Jargon Generator</span><p>Click a button, get a perfectly meaningless corporate sentence. Free jargon generator for meetings.</p></a></li>
+        <li class="tool" data-kind="Concept"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/parapet/"><span class="tape">Parapet</span><p>Mocked-up trust &amp; safety product — a content-moderation console with a sample queue of flagged social posts.</p></a></li>
+        <li class="tool" data-kind="Devtool"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/e2e-dashboard/"><span class="tape">E2E Test Dashboard</span><p>Playwright test results for this site's projects, run automatically on every push.</p></a></li>
+        <li class="tool" data-kind="Generator"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/lorem-ipsum-generator/"><span class="tape">Lorem Ipsum Generator</span><p>Classic Latin or themed placeholder text — pirate, space, foodie, corporate and more.</p></a></li>
+        <li class="tool" data-kind="Tool"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/emoji-picker/"><span class="tape">Emoji Keyboard</span><p>Search or browse 1,900+ emoji by category and copy any of them to your clipboard in one click.</p></a></li>
+        <li class="tool" data-kind="Demo"><a href="https://kranmal.github.io/aurora-drift/"><span class="tape">Aurora Drift</span><p>An Amiga-style demoscene intro — starfield, copper bars, a bouncing checkered ball, and a scrolltext — set to an original halftime drum &amp; bass track.</p></a></li>
+        <li class="tool" data-kind="AI"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/llm-cost-calculator/"><span class="tape">LLM API Cost Calculator</span><p>Compare Claude, GPT, and Gemini API costs side by side — per request and per month.</p></a></li>
+        <li class="tool" data-kind="Markets"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/metal-prices-uk/"><span class="tape">UK Precious Metal Prices</span><p>Live gold, silver and platinum spot prices in GBP, plus scrap melt value by purity.</p></a></li>
+        <li class="tool" data-kind="Markets"><a href="https://kranmal.github.io/market-pulse/"><span class="tape">Market Pulse</span><p>Live stock, crypto, and metals news aggregated from dozens of publishers worldwide, refreshed every 30 minutes.</p></a></li>
+        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/footlore/"><span class="tape">Footlore</span><p>What's worth looking at, right where you're standing — sights, food and shops nearby, and a walk that strings them together.</p></a></li>
+        <li class="tool" data-kind="Game"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/station-y2/"><span class="tape">Station Y2</span><p>A text adventure down Will Crowther's 1976 cave — his map and his magic words, rewritten from scratch, with the dark drawn around you as you go.</p></a></li>
+        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/ratedrift/"><span class="tape">RateDrift</span><p>Track when savings bonus rates end and fixed bonds mature, see what doing nothing costs per year, and check FSCS cover per banking licence.</p></a></li>
+        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/sysmon/"><span class="tape">sysmon-widget</span><p>A transparent, draggable system monitor for your Linux desktop — CPU, RAM, GPU, temperatures, disks and network. Linux only.</p></a></li>
+        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/pollar-ticker/"><span class="tape">pollar-ticker</span><p>A slim always-on-top Pollar news ticker for your Linux desktop, fed by Pollar's public RSS. Linux only.</p></a></li>
+        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/test-bank/"><span class="tape">Test Bank</span><p>A fictional UK high-street demo bank — accounts with month-by-month statements, loans, business and private banking, and a branch finder map. Built for UI practice and test automation.</p></a></li>
+        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/inkwell/"><span class="tape">Inkwell</span><p>A word processor in your browser: styles, tables, spelling and grammar checking, and Word import and export. Documents stay on your device.</p></a></li>
+        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/claude-usage-monitor/"><span class="tape">Claude Usage Monitor</span><p>A small transparent Linux desktop widget and tray icon showing how much of your Claude usage limits are left and when they reset. Unofficial.</p></a></li>
+        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/linux-speedtest/"><span class="tape">Linux Speedtest</span><p>A small transparent Linux desktop speed test: press start and watch live ping, download and upload. Linux only.</p></a></li>
+        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/linux-powermon/"><span class="tape">Linux Powermon</span><p>A transparent Linux desktop overlay showing how much electricity your PC uses and what it costs, with a one-click energy saver and a tray icon. Linux only.</p></a></li>
+        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/proofdeck/"><span class="tape">Proofdeck</span><p>Self-hosted test management in the style of Zephyr Scale: cases, cycles, runs and bugs, with tracker links, SSO and a phone-friendly test player. Node and SQLite, no dependencies.</p></a></li>
+        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/vacuumtube-macos/"><span class="tape">VacuumTube for macOS</span><p>A macOS (Apple silicon) build of VacuumTube, the YouTube TV app for your desktop, by shy1132. Unofficial and unsigned.</p></a></li>
+        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/linux-keepawake/"><span class="tape">Linux Keep Awake</span><p>A Linux system tray app that stops your computer going to sleep: keep it awake for a set time or until you turn it off. Linux only.</p></a></li>
+        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/cryptomon/"><span class="tape">cryptomon</span><p>A transparent Linux desktop widget for your crypto portfolio: add the coins you hold and watch live value, 24h change and 7 day trend. Linux only.</p></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec about" id="about" aria-labelledby="about-h">
+    <div class="wrap about-grid">
       <div>
-        <p class="eyebrow">About</p>
-        <h2 id="about-h">Ship something useful. Keep it fast.</h2>
-        <p class="about-p">Ranmal Labs is an independent studio building small, focused web tools. Each one is designed, built and maintained by Ketan Ranmal, with AI-assisted development as part of the workflow, so an idea can become a working tool in days and keep improving with feedback.</p>
+        <h2 id="about-h" style="margin-bottom:28px">Ship something useful. Keep it fast.</h2>
+        <p>Ranmal Labs is an independent studio building small, focused web tools. Each one is designed, built and maintained by Ketan Ranmal, with AI-assisted development as part of the workflow, so an idea can become a working tool in days and keep improving with feedback.</p>
       </div>
-      <ul class="points">
-        <li><span class="pt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3 5 14h6l-1 7 8-11h-6z"/></svg></span><div><b>Fast by default</b><span>No backend, no build step, no bloat.</span></div></li>
-        <li><span class="pt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><div><b>Private</b><span>Your data stays in your browser.</span></div></li>
-        <li><span class="pt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5.3L20 9M20 4v5h-5M20 12a8 8 0 0 1-14 5.3L4 15M4 20v-5h5"/></svg></span><div><b>Always improving</b><span>Tools get better from real feedback.</span></div></li>
-      </ul>
+      <dl class="principles">
+        <div><dt>Fast by default</dt><dd>No backend, no build step, no bloat.</dd></div>
+        <div><dt>Private</dt><dd>Your data stays in your browser.</dd></div>
+        <div><dt>Always improving</dt><dd>Tools get better from real feedback.</dd></div>
+      </dl>
     </div>
   </section>
 
-  <section class="shell" aria-labelledby="cta-h">
-    <div class="cta-card">
-      <h2 id="cta-h">Got a tool you wish existed?</h2>
-      <p>Tell me. It might be the next thing out of the lab.</p>
-      <a class="btn btn-primary" href="https://www.linkedin.com/company/ranmal-labs/" rel="noopener">Follow Ranmal Labs on LinkedIn <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+  <section class="cta" aria-labelledby="cta-h">
+    <div class="wrap">
+      <div>
+        <h2 id="cta-h">Got a tool you wish existed?</h2>
+        <p>Tell me. It might be the next thing out of the lab.</p>
+      </div>
+      <a class="btn btn-ind" href="https://www.linkedin.com/company/ranmal-labs/">Message Ranmal Labs on LinkedIn</a>
     </div>
   </section>
 </main>
 
-<footer class="foot">
-  <div class="shell foot-in">
-    <a class="brand brand-sm" href="/"><img src="assets/logo.svg" alt="" width="28" height="28"><span>Ranmal <b>Labs</b></span></a>
-    <nav class="foot-links" aria-label="Footer">
-      <a href="privacy.html">Privacy policy</a>
-      <a href="https://www.linkedin.com/company/ranmal-labs/" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/kranmal" rel="noopener">GitHub</a>
-    </nav>
-    <p class="copy">© 2026 Ranmal Labs · Built by Ketan Ranmal · Hosted on GitHub Pages</p>
+<footer>
+  <div class="wrap">
+    <span>© 2026 Ranmal Labs. Built by Ketan Ranmal, hosted on GitHub Pages.</span>
+    <nav aria-label="Footer"><a href="privacy.html">Privacy policy</a><a href="https://www.linkedin.com/company/ranmal-labs/">LinkedIn</a><a href="https://github.com/kranmal">GitHub</a></nav>
   </div>
 </footer>
 
 <script>
+/* type filter over the static list; without JS every tool is just listed */
 (function () {
-  var root = document.documentElement;
-  var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  /* keep the count honest when a project is added, so the copy can't go stale
-     (the static number is what no-JS visitors and crawlers see; the content
-     test checks it too) */
-  var n = document.querySelectorAll(".feature, .track").length;
-  if (n) document.getElementById("count").textContent = n;
-
-  /* reveal on scroll — opt in only when motion is welcome and IO exists */
-  if (!still && "IntersectionObserver" in window) {
-    root.classList.add("js-reveal");
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
-      });
-    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
-    document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
-    setTimeout(function () {
-      document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("is-in"); });
-    }, 1500);
+  var wall = document.getElementById("wall"), chips = document.getElementById("chips");
+  var items = [].slice.call(wall.querySelectorAll(".tool")), kinds = [], count = {};
+  items.forEach(function (li) { var k = li.dataset.kind; if (!count[k]) { count[k] = 0; kinds.push(k); } count[k]++; });
+  kinds.sort(function (x, y) { return count[y] - count[x]; });
+  function show(k) {
+    items.forEach(function (li) { li.hidden = k !== "All" && li.dataset.kind !== k; });
+    [].forEach.call(chips.querySelectorAll("button"), function (b) { b.setAttribute("aria-pressed", String(b.dataset.k === k)); });
   }
+  ["All"].concat(kinds).forEach(function (k) {
+    var li = document.createElement("li"), b = document.createElement("button");
+    b.className = "chip"; b.type = "button"; b.dataset.k = k;
+    b.textContent = k + " (" + (k === "All" ? items.length : count[k]) + ")";
+    b.addEventListener("click", function () { show(k); });
+    li.appendChild(b); chips.appendChild(li);
+  });
+  show("All");
+  var c = document.getElementById("count");
+  if (c) c.textContent = document.querySelectorAll("#featured a, #wall a").length;
 })();
-</script>
-<script>
 
-const stage=document.getElementById('stage'),tilt=document.getElementById('tilt');
-const still=matchMedia('(prefers-reduced-motion:reduce)').matches;
-if(!still){
-  stage.addEventListener('pointermove',e=>{const r=stage.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
-    tilt.style.transform=`rotateY(${x*18}deg) rotateX(${-y*18}deg)`});
-  stage.addEventListener('pointerleave',()=>tilt.style.transform='');
-  stage.addEventListener('click',e=>{const r=stage.getBoundingClientRect(),cols=['#2dd4bf','#38bdf8','#a78bfa','#fff'];
-    for(let i=0;i<16;i++){const b=document.createElement('i');b.className='burst';const a=Math.random()*6.283,d=50+Math.random()*90;
-      b.style.cssText=`left:${e.clientX-r.left}px;top:${e.clientY-r.top}px;--dx:${Math.cos(a)*d}px;--dy:${Math.sin(a)*d}px;--c:${cols[i%4]}`;
-      stage.appendChild(b);setTimeout(()=>b.remove(),950)}});
-}
-
+/* flask: press to flip the liquid between blue and yellow */
+var flask = document.getElementById("flask");
+flask.addEventListener("click", function () { flask.setAttribute("aria-pressed", String(flask.getAttribute("aria-pressed") !== "true")); });
 </script>
 </body>
 </html>
