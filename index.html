@@ -295,8 +295,13 @@ section { scroll-margin-top: 16px; }
 .wall { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0 40px; margin: 0; padding: 0; list-style: none; }
 .tool { border-top: 4px solid var(--c, var(--line)); padding: 20px 0 26px; }
 .tool a { text-decoration: none; display: block; }
-.tool .tape { font-size: 1.05rem; transition: background .15s; }
-.tool a:hover .tape { background: var(--litmus); color: var(--on-litmus); }
+.tool .tape {
+  background: none; color: var(--ink); box-shadow: none; border-radius: 0; padding: 0;
+  font: 650 1.3rem/1.25 "Instrument Sans", sans-serif; letter-spacing: -.01em;
+  text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 5px; text-decoration-thickness: 2px;
+  transition: color .15s, text-decoration-color .15s;
+}
+.tool a:hover .tape { color: var(--litmus); text-decoration-color: currentColor; }
 .tool p { margin: 12px 0 0; color: var(--ink-2); font-size: 1rem; line-height: 1.5; }
 .tool small { display: block; margin-top: 10px; color: var(--ink-2); font-size: .9rem; }
 .empty { color: var(--ink-2); }
