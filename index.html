@@ -119,6 +119,8 @@
   --tape-bg: #e3e9f1; --tape-fg: #101828; --hole: rgba(232,237,244,.12);
 }
 
+footer a { display: inline-flex; align-items: center; min-height: 44px; padding-inline: 4px; }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
@@ -146,9 +148,9 @@ a { color: inherit; }
 .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 800 1.25rem/1 "Anybody", sans-serif; font-stretch: 85%; }
 .brand svg { width: 28px; height: 28px; }
 .nav { display: flex; align-items: center; gap: 22px; }
-.nav a { text-decoration: none; font-weight: 500; }
+.nav a { text-decoration: none; font-weight: 500; display: inline-flex; align-items: center; min-height: 44px; padding-inline: 4px; }
 .nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
-.theme { font: inherit; background: none; color: inherit; border: 1.5px solid var(--line); border-radius: 999px; width: 40px; height: 40px; cursor: pointer; }
+.theme { min-width: 44px; min-height: 44px; font: inherit; background: none; color: inherit; border: 1.5px solid var(--line); border-radius: 999px; width: 40px; height: 40px; cursor: pointer; }
 .theme:hover { border-color: var(--ink); }
 @media (max-width: 560px) { .nav .hide-sm { display: none; } }
 
@@ -340,15 +342,15 @@ footer nav { display: flex; gap: 20px; }
 <body>
 
 <header class="wrap top">
-  <a class="brand" href="#top" aria-label="Ranmal Labs home">
+  <a class="brand" href="#top" aria-label="Ranmal Labs home" title="Back to the top of the page">
     <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M12 3h8M13.5 3v8.5L5.8 24.4A3 3 0 0 0 8.4 29h15.2a3 3 0 0 0 2.6-4.6L18.5 11.5V3" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 20h14" stroke="var(--litmus)" stroke-width="2.4" stroke-linecap="round"/></svg>
     Ranmal Labs
   </a>
   <nav class="nav" aria-label="Main">
-    <a href="#tools">Tools</a>
-    <a href="#about">About</a>
-    <a class="hide-sm" href="https://www.linkedin.com/company/ranmal-labs/">LinkedIn</a>
-    <button class="theme" id="theme-toggle" type="button" title="Toggle light/dark theme" aria-label="Toggle theme">◐</button>
+    <a href="#tools" title="Jump to the tools on this page">Tools</a>
+    <a href="#about" title="Jump to the About section">About</a>
+    <a class="hide-sm" href="https://www.linkedin.com/company/ranmal-labs/" target="_blank" rel="noopener noreferrer" title="LinkedIn (opens in a new tab)">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a>
+    <button class="theme" id="theme-toggle" type="button" title="Switch between light and dark theme (stays on this page)" aria-label="Toggle theme">◐</button>
   </nav>
 </header>
 
@@ -364,11 +366,11 @@ footer nav { display: flex; gap: 20px; }
         <li><span class="tape">No sign-up</span></li>
       </ul>
       <div class="actions">
-        <a class="btn btn-main" href="#tools">Browse the tools</a>
-        <a class="btn btn-quiet" href="#about">About the lab</a>
+        <a class="btn btn-main" href="#tools" title="Jump to the tools on this page">Browse the tools</a>
+        <a class="btn btn-quiet" href="#about" title="Jump to the About section">About the lab</a>
       </div>
       </div>
-      <button class="flask" id="flask" type="button" aria-pressed="false" aria-label="Flask logo. Press to change the liquid colour between blue and yellow.">
+      <button class="flask" id="flask" type="button" title="Change the liquid colour (stays on this page)" aria-pressed="false" aria-label="Flask logo. Press to change the liquid colour between blue and yellow.">
         <svg viewBox="0 0 400 400" focusable="false" aria-hidden="true">
           <defs>
             <clipPath id="f-clip"><path d="M168 80H232V152L304 282Q320 318 284 318H116Q80 318 96 282L168 152Z"/></clipPath>
@@ -409,22 +411,22 @@ footer nav { display: flex; gap: 20px; }
         <p class="sec-note">Open any of these straight from here.</p>
       </div>
       <ul class="index" id="featured">
-        <li><a class="row" href="https://kranmal.github.io/lendly/" aria-label="Open Lendly">
+        <li><a class="row" href="https://kranmal.github.io/lendly/" aria-label="Open Lendly" title="Open Lendly (opens in this tab)">
           <span class="row-name">Lendly<span class="tape">App</span></span>
           <span class="row-desc">Track what you've lent out and borrowed — items, people, and due dates, all in one place.</span><span class="row-go">Open</span></a></li>
-        <li><a class="row" href="https://kranmal.github.io/cvclarity/" aria-label="Open CVClarity">
+        <li><a class="row" href="https://kranmal.github.io/cvclarity/" aria-label="Open CVClarity" title="Open CVClarity (opens in this tab)">
           <span class="row-name">CVClarity<span class="tape">App</span></span>
           <span class="row-desc">Check your CV gets past applicant tracking software, fix spelling and grammar, and download it free as PDF or Word. Nothing leaves your browser.</span><span class="row-go">Open</span></a></li>
-        <li><a class="row" href="https://kranmal.github.io/Vibe_Portfolio_Projects/crypto-portfolio/" aria-label="Open Crypto Portfolio">
+        <li><a class="row" href="https://kranmal.github.io/Vibe_Portfolio_Projects/crypto-portfolio/" aria-label="Open Crypto Portfolio" title="Open Crypto Portfolio (opens in this tab)">
           <span class="row-name">Crypto Portfolio<span class="tape">Markets</span></span>
           <span class="row-desc">Track a crypto portfolio's value and allocation over time, with live prices.</span><span class="row-go">Open</span></a></li>
-        <li><a class="row" href="https://kranmal.github.io/Vibe_Portfolio_Projects/cot-dashboard/" aria-label="Open COT Crowding Dashboard">
+        <li><a class="row" href="https://kranmal.github.io/Vibe_Portfolio_Projects/cot-dashboard/" aria-label="Open COT Crowding Dashboard" title="Open COT Crowding Dashboard (opens in this tab)">
           <span class="row-name">COT Crowding Dashboard<span class="tape">Markets</span></span>
           <span class="row-desc">Weekly CFTC positioning extremes across 45 major futures markets, updated live in the browser.</span><span class="row-go">Open</span></a></li>
-        <li><a class="row" href="https://kranmal.github.io/Vibe_Portfolio_Projects/prompt-grader/" aria-label="Open Prompt Grader">
+        <li><a class="row" href="https://kranmal.github.io/Vibe_Portfolio_Projects/prompt-grader/" aria-label="Open Prompt Grader" title="Open Prompt Grader (opens in this tab)">
           <span class="row-name">Prompt Grader<span class="tape">AI</span></span>
           <span class="row-desc">Paste a prompt and get an instant structural score, plus a rewritten draft with the gaps marked.</span><span class="row-go">Open</span></a></li>
-        <li><a class="row" href="https://kranmal.github.io/tessera/" aria-label="Open Tessera">
+        <li><a class="row" href="https://kranmal.github.io/tessera/" aria-label="Open Tessera" title="Open Tessera (opens in this tab)">
           <span class="row-name">Tessera<span class="tape">Markets</span></span>
           <span class="row-desc">Live Hyperliquid perpetuals dashboard: hundreds of markets with charts, alerts and light and dark themes.</span><span class="row-go">Open</span></a></li>
       </ul>
@@ -439,31 +441,31 @@ footer nav { display: flex; gap: 20px; }
       </div>
       <ul class="chips" id="chips" aria-label="Filter by type"></ul>
       <ul class="wall" id="wall">
-        <li class="tool" data-kind="Game"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/office-dash/"><span class="tape">Office Dash</span><p>Jet Set Willy-style flick-screen platformer — 10 rooms of lethal coworkers, 34 papers to file, one Dundies night.</p></a></li>
-        <li class="tool" data-kind="Weather"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/weather-app/"><span class="tape">Pixel Weather</span><p>Retro pixel-art weather app with live forecasts, air quality, and sun position.</p></a></li>
-        <li class="tool" data-kind="Generator"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/bollocks-generator/"><span class="tape">Corporate Nonsense Jargon Generator</span><p>Click a button, get a perfectly meaningless corporate sentence. Free jargon generator for meetings.</p></a></li>
-        <li class="tool" data-kind="Concept"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/parapet/"><span class="tape">Parapet</span><p>Mocked-up trust &amp; safety product — a content-moderation console with a sample queue of flagged social posts.</p></a></li>
-        <li class="tool" data-kind="Devtool"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/e2e-dashboard/"><span class="tape">E2E Test Dashboard</span><p>Playwright test results for this site's projects, run automatically on every push.</p></a></li>
-        <li class="tool" data-kind="Generator"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/lorem-ipsum-generator/"><span class="tape">Lorem Ipsum Generator</span><p>Classic Latin or themed placeholder text — pirate, space, foodie, corporate and more.</p></a></li>
-        <li class="tool" data-kind="Tool"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/emoji-picker/"><span class="tape">Emoji Keyboard</span><p>Search or browse 1,900+ emoji by category and copy any of them to your clipboard in one click.</p></a></li>
-        <li class="tool" data-kind="Demo"><a href="https://kranmal.github.io/aurora-drift/"><span class="tape">Aurora Drift</span><p>An Amiga-style demoscene intro — starfield, copper bars, a bouncing checkered ball, and a scrolltext — set to an original halftime drum &amp; bass track.</p></a></li>
-        <li class="tool" data-kind="AI"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/llm-cost-calculator/"><span class="tape">LLM API Cost Calculator</span><p>Compare Claude, GPT, and Gemini API costs side by side — per request and per month.</p></a></li>
-        <li class="tool" data-kind="Markets"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/metal-prices-uk/"><span class="tape">UK Precious Metal Prices</span><p>Live gold, silver and platinum spot prices in GBP, plus scrap melt value by purity.</p></a></li>
-        <li class="tool" data-kind="Markets"><a href="https://kranmal.github.io/market-pulse/"><span class="tape">Market Pulse</span><p>Live stock, crypto, and metals news aggregated from dozens of publishers worldwide, refreshed every 30 minutes.</p></a></li>
-        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/footlore/"><span class="tape">Footlore</span><p>What's worth looking at, right where you're standing — sights, food and shops nearby, and a walk that strings them together.</p></a></li>
-        <li class="tool" data-kind="Game"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/station-y2/"><span class="tape">Station Y2</span><p>A text adventure down Will Crowther's 1976 cave — his map and his magic words, rewritten from scratch, with the dark drawn around you as you go.</p></a></li>
-        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/ratedrift/"><span class="tape">RateDrift</span><p>Track when savings bonus rates end and fixed bonds mature, see what doing nothing costs per year, and check FSCS cover per banking licence.</p></a></li>
-        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/sysmon/"><span class="tape">sysmon-widget</span><p>A transparent, draggable system monitor for your Linux desktop — CPU, RAM, GPU, temperatures, disks and network. Linux only.</p></a></li>
-        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/pollar-ticker/"><span class="tape">pollar-ticker</span><p>A slim always-on-top Pollar news ticker for your Linux desktop, fed by Pollar's public RSS. Linux only.</p></a></li>
-        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/test-bank/"><span class="tape">Test Bank</span><p>A fictional UK high-street demo bank — accounts with month-by-month statements, loans, business and private banking, and a branch finder map. Built for UI practice and test automation.</p></a></li>
-        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/inkwell/"><span class="tape">Inkwell</span><p>A word processor in your browser: styles, tables, spelling and grammar checking, and Word import and export. Documents stay on your device.</p></a></li>
-        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/claude-usage-monitor/"><span class="tape">Claude Usage Monitor</span><p>A small transparent Linux desktop widget and tray icon showing how much of your Claude usage limits are left and when they reset. Unofficial.</p></a></li>
-        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/linux-speedtest/"><span class="tape">Linux Speedtest</span><p>A small transparent Linux desktop speed test: press start and watch live ping, download and upload. Linux only.</p></a></li>
-        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/linux-powermon/"><span class="tape">Linux Powermon</span><p>A transparent Linux desktop overlay showing how much electricity your PC uses and what it costs, with a one-click energy saver and a tray icon. Linux only.</p></a></li>
-        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/proofdeck/"><span class="tape">Proofdeck</span><p>Self-hosted test management in the style of Zephyr Scale: cases, cycles, runs and bugs, with tracker links, SSO and a phone-friendly test player. Node and SQLite, no dependencies.</p></a></li>
-        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/vacuumtube-macos/"><span class="tape">VacuumTube for macOS</span><p>A macOS (Apple silicon) build of VacuumTube, the YouTube TV app for your desktop, by shy1132. Unofficial and unsigned.</p></a></li>
-        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/linux-keepawake/"><span class="tape">Linux Keep Awake</span><p>A Linux system tray app that stops your computer going to sleep: keep it awake for a set time or until you turn it off. Linux only.</p></a></li>
-        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/cryptomon/"><span class="tape">cryptomon</span><p>A transparent Linux desktop widget for your crypto portfolio: add the coins you hold and watch live value, 24h change and 7 day trend. Linux only.</p></a></li>
+        <li class="tool" data-kind="Game"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/office-dash/" title="Open Office Dash (opens in this tab)"><span class="tape">Office Dash</span><p>Jet Set Willy-style flick-screen platformer — 10 rooms of lethal coworkers, 34 papers to file, one Dundies night.</p></a></li>
+        <li class="tool" data-kind="Weather"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/weather-app/" title="Open Pixel Weather (opens in this tab)"><span class="tape">Pixel Weather</span><p>Retro pixel-art weather app with live forecasts, air quality, and sun position.</p></a></li>
+        <li class="tool" data-kind="Generator"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/bollocks-generator/" title="Open Corporate Nonsense Jargon Generator (opens in this tab)"><span class="tape">Corporate Nonsense Jargon Generator</span><p>Click a button, get a perfectly meaningless corporate sentence. Free jargon generator for meetings.</p></a></li>
+        <li class="tool" data-kind="Concept"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/parapet/" title="Open Parapet (opens in this tab)"><span class="tape">Parapet</span><p>Mocked-up trust &amp; safety product — a content-moderation console with a sample queue of flagged social posts.</p></a></li>
+        <li class="tool" data-kind="Devtool"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/e2e-dashboard/" title="Open E2E Test Dashboard (opens in this tab)"><span class="tape">E2E Test Dashboard</span><p>Playwright test results for this site's projects, run automatically on every push.</p></a></li>
+        <li class="tool" data-kind="Generator"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/lorem-ipsum-generator/" title="Open Lorem Ipsum Generator (opens in this tab)"><span class="tape">Lorem Ipsum Generator</span><p>Classic Latin or themed placeholder text — pirate, space, foodie, corporate and more.</p></a></li>
+        <li class="tool" data-kind="Tool"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/emoji-picker/" title="Open Emoji Keyboard (opens in this tab)"><span class="tape">Emoji Keyboard</span><p>Search or browse 1,900+ emoji by category and copy any of them to your clipboard in one click.</p></a></li>
+        <li class="tool" data-kind="Demo"><a href="https://kranmal.github.io/aurora-drift/" title="Open Aurora Drift (opens in this tab)"><span class="tape">Aurora Drift</span><p>An Amiga-style demoscene intro — starfield, copper bars, a bouncing checkered ball, and a scrolltext — set to an original halftime drum &amp; bass track.</p></a></li>
+        <li class="tool" data-kind="AI"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/llm-cost-calculator/" title="Open LLM API Cost Calculator (opens in this tab)"><span class="tape">LLM API Cost Calculator</span><p>Compare Claude, GPT, and Gemini API costs side by side — per request and per month.</p></a></li>
+        <li class="tool" data-kind="Markets"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/metal-prices-uk/" title="Open UK Precious Metal Prices (opens in this tab)"><span class="tape">UK Precious Metal Prices</span><p>Live gold, silver and platinum spot prices in GBP, plus scrap melt value by purity.</p></a></li>
+        <li class="tool" data-kind="Markets"><a href="https://kranmal.github.io/market-pulse/" title="Open Market Pulse (opens in this tab)"><span class="tape">Market Pulse</span><p>Live stock, crypto, and metals news aggregated from dozens of publishers worldwide, refreshed every 30 minutes.</p></a></li>
+        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/footlore/" title="Open Footlore (opens in this tab)"><span class="tape">Footlore</span><p>What's worth looking at, right where you're standing — sights, food and shops nearby, and a walk that strings them together.</p></a></li>
+        <li class="tool" data-kind="Game"><a href="https://kranmal.github.io/Vibe_Portfolio_Projects/station-y2/" title="Open Station Y2 (opens in this tab)"><span class="tape">Station Y2</span><p>A text adventure down Will Crowther's 1976 cave — his map and his magic words, rewritten from scratch, with the dark drawn around you as you go.</p></a></li>
+        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/ratedrift/" title="Open RateDrift (opens in this tab)"><span class="tape">RateDrift</span><p>Track when savings bonus rates end and fixed bonds mature, see what doing nothing costs per year, and check FSCS cover per banking licence.</p></a></li>
+        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/sysmon/" title="Open sysmon-widget (opens in this tab)"><span class="tape">sysmon-widget</span><p>A transparent, draggable system monitor for your Linux desktop — CPU, RAM, GPU, temperatures, disks and network. Linux only.</p></a></li>
+        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/pollar-ticker/" title="Open pollar-ticker (opens in this tab)"><span class="tape">pollar-ticker</span><p>A slim always-on-top Pollar news ticker for your Linux desktop, fed by Pollar's public RSS. Linux only.</p></a></li>
+        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/test-bank/" title="Open Test Bank (opens in this tab)"><span class="tape">Test Bank</span><p>A fictional UK high-street demo bank — accounts with month-by-month statements, loans, business and private banking, and a branch finder map. Built for UI practice and test automation.</p></a></li>
+        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/inkwell/" title="Open Inkwell (opens in this tab)"><span class="tape">Inkwell</span><p>A word processor in your browser: styles, tables, spelling and grammar checking, and Word import and export. Documents stay on your device.</p></a></li>
+        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/claude-usage-monitor/" title="Open Claude Usage Monitor (opens in this tab)"><span class="tape">Claude Usage Monitor</span><p>A small transparent Linux desktop widget and tray icon showing how much of your Claude usage limits are left and when they reset. Unofficial.</p></a></li>
+        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/linux-speedtest/" title="Open Linux Speedtest (opens in this tab)"><span class="tape">Linux Speedtest</span><p>A small transparent Linux desktop speed test: press start and watch live ping, download and upload. Linux only.</p></a></li>
+        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/linux-powermon/" title="Open Linux Powermon (opens in this tab)"><span class="tape">Linux Powermon</span><p>A transparent Linux desktop overlay showing how much electricity your PC uses and what it costs, with a one-click energy saver and a tray icon. Linux only.</p></a></li>
+        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/proofdeck/" title="Open Proofdeck (opens in this tab)"><span class="tape">Proofdeck</span><p>Self-hosted test management in the style of Zephyr Scale: cases, cycles, runs and bugs, with tracker links, SSO and a phone-friendly test player. Node and SQLite, no dependencies.</p></a></li>
+        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/vacuumtube-macos/" title="Open VacuumTube for macOS (opens in this tab)"><span class="tape">VacuumTube for macOS</span><p>A macOS (Apple silicon) build of VacuumTube, the YouTube TV app for your desktop, by shy1132. Unofficial and unsigned.</p></a></li>
+        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/linux-keepawake/" title="Open Linux Keep Awake (opens in this tab)"><span class="tape">Linux Keep Awake</span><p>A Linux system tray app that stops your computer going to sleep: keep it awake for a set time or until you turn it off. Linux only.</p></a></li>
+        <li class="tool" data-kind="App"><a href="https://kranmal.github.io/cryptomon/" title="Open cryptomon (opens in this tab)"><span class="tape">cryptomon</span><p>A transparent Linux desktop widget for your crypto portfolio: add the coins you hold and watch live value, 24h change and 7 day trend. Linux only.</p></a></li>
       </ul>
     </div>
   </section>
@@ -488,7 +490,7 @@ footer nav { display: flex; gap: 20px; }
         <h2 id="cta-h">Got a tool you wish existed?</h2>
         <p>Tell me. It might be the next thing out of the lab.</p>
       </div>
-      <a class="btn btn-ind" href="https://www.linkedin.com/company/ranmal-labs/">Message Ranmal Labs on LinkedIn</a>
+      <a class="btn btn-ind" href="https://www.linkedin.com/company/ranmal-labs/" target="_blank" rel="noopener noreferrer" title="Message Ranmal Labs on LinkedIn (opens in a new tab)">Message Ranmal Labs on LinkedIn<span class="sr-only"> (opens in a new tab)</span></a>
     </div>
   </section>
 </main>
@@ -496,7 +498,7 @@ footer nav { display: flex; gap: 20px; }
 <footer>
   <div class="wrap">
     <span>© 2026 Ranmal Labs. Built by Ketan Ranmal, hosted on GitHub Pages.</span>
-    <nav aria-label="Footer"><a href="privacy.html">Privacy policy</a><a href="https://www.linkedin.com/company/ranmal-labs/">LinkedIn</a><a href="https://github.com/kranmal">GitHub</a></nav>
+    <nav aria-label="Footer"><a href="privacy.html" title="Read the privacy policy (opens in this tab)">Privacy policy</a><a href="https://www.linkedin.com/company/ranmal-labs/" target="_blank" rel="noopener noreferrer" title="LinkedIn (opens in a new tab)">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a><a href="https://github.com/kranmal" target="_blank" rel="noopener noreferrer" title="GitHub (opens in a new tab)">GitHub<span class="sr-only"> (opens in a new tab)</span></a></nav>
   </div>
 </footer>
 
@@ -515,6 +517,7 @@ footer nav { display: flex; gap: 20px; }
     var li = document.createElement("li"), b = document.createElement("button");
     b.className = "chip"; b.type = "button"; b.dataset.k = k;
     b.textContent = k + " (" + (k === "All" ? items.length : count[k]) + ")";
+    b.title = k === "All" ? "Show all " + items.length + " tools (filters this page)" : "Show only " + k + " tools (filters this page)";
     b.addEventListener("click", function () { show(k); });
     li.appendChild(b); chips.appendChild(li);
   });
