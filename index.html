@@ -242,14 +242,27 @@ section { scroll-margin-top: 16px; }
 
 /* everything else: a tool wall */
 .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; padding: 0; list-style: none; }
+/* each type has its own colour; the chip and the top rule of its tools share it */
+.chip[data-k="AI"], .tool[data-kind="AI"] { --c: #b79bff; }
+.chip[data-k="App"], .tool[data-kind="App"] { --c: #7fb2ff; }
+.chip[data-k="Concept"], .tool[data-kind="Concept"] { --c: #ffa77a; }
+.chip[data-k="Demo"], .tool[data-kind="Demo"] { --c: #ff9fc4; }
+.chip[data-k="Devtool"], .tool[data-kind="Devtool"] { --c: #7fd6c4; }
+.chip[data-k="Game"], .tool[data-kind="Game"] { --c: #ffd84a; }
+.chip[data-k="Generator"], .tool[data-kind="Generator"] { --c: #c4e36a; }
+.chip[data-k="Markets"], .tool[data-kind="Markets"] { --c: #5fd08a; }
+.chip[data-k="Tool"], .tool[data-kind="Tool"] { --c: #d9c7a0; }
+.chip[data-k="Weather"], .tool[data-kind="Weather"] { --c: #66d9e8; }
 .chip {
-  font: 500 .95rem/1 "Instrument Sans", sans-serif; color: inherit; background: none;
-  border: 1.5px solid var(--line); border-radius: 999px; padding: 10px 16px; cursor: pointer; min-height: 40px;
+  font: 500 .95rem/1 "Instrument Sans", sans-serif; color: inherit;
+  background: color-mix(in srgb, var(--c, transparent) 30%, var(--bench));
+  border: 2px solid var(--c, var(--line)); border-radius: 999px; padding: 10px 16px; cursor: pointer; min-height: 40px;
 }
 .chip:hover { border-color: var(--ink); }
-.chip[aria-pressed="true"] { background: var(--ink); color: var(--bench); border-color: var(--ink); }
+.chip[aria-pressed="true"] { background: var(--c, var(--ink)); color: var(--on-chip, #0e2b26); border-color: var(--c, var(--ink)); font-weight: 600; }
+.chip[data-k="All"][aria-pressed="true"] { color: var(--bench); }
 .wall { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0 40px; margin: 0; padding: 0; list-style: none; }
-.tool { border-top: 1px solid var(--line); padding: 20px 0 26px; }
+.tool { border-top: 4px solid var(--c, var(--line)); padding: 20px 0 26px; }
 .tool a { text-decoration: none; display: block; }
 .tool .tape { font-size: 1.05rem; transition: background .15s; }
 .tool a:hover .tape { background: var(--litmus); color: var(--on-litmus); }
