@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-/* Adding a project means touching the card or tracklist row, the ItemList
+/* Adding a project means touching the featured row or tool entry, the ItemList
    JSON-LD, the sitemap and the "N side projects" count. These have drifted
    apart before, so check they all name the same set of projects. */
 
@@ -12,7 +12,7 @@ test.describe('project list stays in sync', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
     projects = await page
-      .locator('a.feature, a.track')
+      .locator('a.row, .tool > a')
       .evaluateAll(as => as.map(a => (a as HTMLAnchorElement).href));
   });
 
